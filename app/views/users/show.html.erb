@@ -1,0 +1,57 @@
+
+
+<p>
+  <b>Firstname:</b>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Department:</b>
+  <%= @user.department_id %>
+</p>
+
+<br/>
+<%- unless @mydepts.empty?%>
+<b> Departments I Manage </b>
+<div class="mydepartments">
+  <ul>
+  <%- @mydepts.each do |m| %>
+    <li><%= link_to m.name,department_path(m) %></li>
+  <%- end %>
+  </ul>
+</div>
+
+<b> Tickets to assign </b>
+<div class="tickts_to_assign">
+  <ul>
+  <%- @ticketsta.each do |t| %>
+    <li id="ta_<%= t.id %>">
+      <div>
+          <%= link_to t.title,ticket_path(t) %>
+          <%= link_to 'Assign to',assign_ticket_url(t.id,1),:remote=>true %>
+      </div>
+      <div>
+        <%= truncate(t.description,:length=>50,:omission => '...') %>
+      </div>
+      <div> &nbsp; </div>
+    </li>
+  <%- end %>
+  </ul>
+</div>
+
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

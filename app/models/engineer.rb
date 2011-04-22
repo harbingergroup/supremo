@@ -1,0 +1,3 @@
+class Engineer < User
+  
+end

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @ticket.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @ticket.description %>
+</p>
+
+<p>
+  <b>Owners:</b>
+  <%= @ticket.owner.firstname %>
+</p>
+
+<p>
+  <b>Assigned to Department:</b>
+  <%= @ticket.department.name %>
+</p>
+
+
+<p>
+  <b>Status:</b>
+  <%= @ticket.status %>
+</p>
+
+<p>
+  Log Trail:
+<table>
+  <% @audits.each do |a| %>
+  <tr>
+    <td><%= a.comment %></td>
+  </tr>
+  <%end%>
+</table>
+</p>
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

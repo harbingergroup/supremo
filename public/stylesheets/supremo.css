@@ -1,0 +1,79 @@
+/************ Misc ******************/
+html body {
+/*background-color:#F9EACC;*/
+text-shadow: 0px 0px 3px #fff;
+}
+
+INPUT[type="text"]:focus, textarea:focus, INPUT[type="password"]:focus {
+	border : 1px solid #828177;
+}
+INPUT[type="text"]:focus, textarea:focus, INPUT[type="password"]:focus {
+border:1px solid #70BD36;
+padding : 2px 1px;
+box-shadow : 0 0 4px #C7FDC7; /*0 0 4px #BCCDD1*/
+-moz-box-shadow : 0 0 4px #C7FDC7;
+}
+
+.float_right { float:right;}
+.clear {clear: both;}
+
+label {
+    font-weight: bold;
+}
+
+.green {
+    color:green;
+}
+/********************** table sorter *************************/
+
+table.tablesorter tbody tr.hover td{
+	background-color: #E6DEEE;
+}
+
+/************************** Login page **********************/
+.in_div label {
+    display: inline-block;
+    font-weight: bold;
+    text-align: left;
+    width: 77px;
+}
+
+.ou_div {
+  background: none repeat scroll 0 0 #E6EEEE;
+    border: 1px solid #CACECE;
+    border-radius: 18px 18px 18px 18px;
+    margin: 12%;
+    padding: 3% 0;
+    width: 510px;
+}
+.in_div{}
+.in_div .remember_me_text{width : auto;}
+
+/******************* Tickets Table **************************/
+table.tablesorter tbody .tcp_0 td{
+ 	background: none repeat scroll 0 0 #F2FAFF;
+    border-color: #ADD7F3;
+    color: #555599;
+}
+
+table.tablesorter tbody .tcp_1 td{
+ 	    background: none repeat scroll 0 0 #D2EEFF;
+    border-color: #9ED2F2;
+    color: #555599;
+}
+.tcp_0 a,.tcp_1 a {
+color: #555599;
+}
+.tcp_2 a,.tcp_3 a{
+color: #990000;
+}
+table.tablesorter tbody .tcp_2 td{
+ 	 background: none repeat scroll 0 0 #FFEEEE;
+    border-color: #FFCCCC;
+    color: #990000;
+}
+table.tablesorter tbody .tcp_3 td{
+ 	 background: none repeat scroll 0 0 #FFC4C4;
+    border-color: #FFB4B4;
+    color: #990000;
+}

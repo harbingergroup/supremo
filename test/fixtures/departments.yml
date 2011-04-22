@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  head: 1
+  activated: false
+
+two:
+  name: MyString
+  head: 1
+  activated: false

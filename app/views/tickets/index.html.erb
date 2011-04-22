@@ -1,0 +1,34 @@
+<h1>Listing tickets</h1>
+
+<table class="tablesorter">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Owners</th>
+    <th>Assigned to Department</th>
+    <th>Status</th>
+    <th colspan="3"> Actions</th>
+    <!--<th></th>
+    <th></th> -->
+  </tr>
+  </thead>
+  <tbody
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.title %></td>
+    <td><%= ticket.description %></td>
+    <td><%= ticket.owner.firstname %></td>
+    <td><%= ticket.department.name %></td>
+    <td><%= ticket.status %></td>
+    <td><%= link_to 'Show', ticket %></td>
+    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+    <td><%= button_to('Destroy', ticket, :confirm => 'Are you sure?', :method => :delete) %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Ticket', new_ticket_path %>
