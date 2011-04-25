@@ -25,6 +25,18 @@
   <b>Status:</b>
   <%= @ticket.print_status %>
 </p>
+<h3>Comments</h3>
+<div id="commentslist">
+
+  <%=render :partial => "comment"%>
+
+</div>
+<div id="comment_form"></div>
+<div id="new_comment">
+  <h3>Add your comment</h3>
+
+  <%=render :partial => "comment_form"%>
+</div>
 
 <% if @ticket.not_assigned? %>
 <div class="assign_to_cover">
@@ -44,9 +56,9 @@
   Log Trail:
 <table>
   <% @audits.each do |a| %>
-  <tr>
-    <td><%= a.comment %></td>
-  </tr>
+    <tr>
+      <td><%= a.comment %></td>
+    </tr>
   <%end%>
 </table>
 </p>

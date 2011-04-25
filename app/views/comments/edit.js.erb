@@ -1,0 +1,2 @@
+$("#comment_form").html("<%= escape_javascript(render(:partial => "tickets/edit_comment_form", :locals => {:comments => @comments}))%>");
+$("#comment_form").show(300);

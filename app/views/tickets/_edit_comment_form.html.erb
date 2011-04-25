@@ -1,0 +1,10 @@
+<%= form_tag(ticket_comment_path(@ticket), :remote => true, :method => :put) do  %>
+ <div id="comment_errors" style="display: none;"></div>
+
+ <div class="field">
+    <%= text_area :comment,:description, :rows => '5', :cols => '30' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>

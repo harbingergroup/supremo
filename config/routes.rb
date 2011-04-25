@@ -1,17 +1,17 @@
 Supremo::Application.routes.draw do
-  resources :tickets
- # root :to=>"devise/sessions#new"
-  resources :comments
   resources :departments do
     member do
       get 'users'
     end
   end
 
+  resources :tickets do
+    resources :comments
+  end
   devise_for :users,:controllers => { :registrations => "registrations" } do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
-     root :to => "devise/sessions#new"
+    root :to => "devise/sessions#new"
   end
   resources :users
   resources :admins,:controller=>:users
