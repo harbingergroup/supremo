@@ -1,0 +1,7 @@
+<% unless @ticket.closed? %>
+<br/>
+<div>
+  <%= link_to 'Reassign to owner',reassign_ticket_path(@ticket,@ticket.owner_id) %>
+|  <%= link_to 'Resolve Ticket',resolve_ticket_path(@ticket) %>
+</div>
+<% end %>
