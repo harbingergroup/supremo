@@ -25,6 +25,25 @@
   <b>Status:</b>
   <%= @ticket.print_status %>
 </p>
+
+
+<% unless @ticket.not_assigned? %>
+<div class="assign_to_cover">
+  <b> Assigned to : </b>
+  <%= @ticket.assigned.full_name %>
+</div>
+<% end %>
+
+<% case current_user.id %>
+<% when (@ticket.head_of_department).id %>
+  <%= render :partial=>'tickets/head_ticket_show' %>
+<% when @ticket.owner_id %>
+  <%= render :partial=>'tickets/owner_ticket_show' %>
+<% when @ticket.assigned_to %>
+  <%= render :partial=>'tickets/engg_ticket_show' %>
+<% end %>
+
+
 <h3>Comments</h3>
 <div id="commentslist">
 
@@ -38,19 +57,7 @@
   <%=render :partial => "comment_form"%>
 </div>
 
-<% if @ticket.not_assigned? %>
-<div class="assign_to_cover">
-  <b>Assign to : </b>
-  <%= form_tag assign_ticket_url(@ticket),:remote=>true do %>
-    <%= collection_select '','user_id',@department_users,:id,:full_name %>
-    <%= submit_tag "Assign" %>
-  <% end %>
-</div>
 
-<% else %>
-  <b> Assigned_to : </b>
-  <%= @ticket.assigned.full_name %>
-<% end %>
 
 <p>
   Log Trail:

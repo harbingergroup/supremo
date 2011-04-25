@@ -6,6 +6,11 @@ Supremo::Application.routes.draw do
   end
 
   resources :tickets do
+    member do
+      get 'resolve'
+      get 'close'
+      get 'reopen'
+    end
     resources :comments
   end
   devise_for :users,:controllers => { :registrations => "registrations" } do
@@ -17,6 +22,7 @@ Supremo::Application.routes.draw do
   resources :admins,:controller=>:users
   resources :engineers,:controller=>:users
   match 'tickets/:ticket_id/assign(/:user_id)',:to=>'tickets#assign',:as=>'assign_ticket'
+  match 'tickets/:ticket_id/reassign(/:user_id)',:to=>'tickets#reassign',:as=>'reassign_ticket'
 
 
   # The priority is based upon order of creation:

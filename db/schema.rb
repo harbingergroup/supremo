@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420103842) do
+ActiveRecord::Schema.define(:version => 20110425093549) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -44,20 +44,21 @@ ActiveRecord::Schema.define(:version => 20110420103842) do
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.integer  "head_id"
-    t.boolean  "activated",  :default => true
+    t.boolean  "activated"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tickets", :force => true do |t|
     t.string   "title"
-    t.string   "description"
-    t.integer  "owner_id"
+    t.text     "description"
+    t.integer  "owner_id",             :default => 0, :null => false
     t.integer  "assigned_to"
-    t.integer  "department_id"
-    t.integer  "status",        :default => 0
+    t.integer  "status",               :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "department_id",        :default => 0, :null => false
+    t.integer  "original_assigned_to"
   end
 
   create_table "users", :force => true do |t|

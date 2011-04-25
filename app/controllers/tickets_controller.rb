@@ -95,9 +95,12 @@ class TicketsController < ApplicationController
   def assign
 #   raise 'here '
     @ticket = Ticket.find(params[:ticket_id])
-    #@ticket.assign_to_user(params[:user_id])
-    #@user = @ticket.assigned
-    @user = User.find(3)
+    @ticket.assign_to_user(params[:user_id])
+    @user = @ticket.assigned
+    #@user = User.find(3)
+    @ticket = Ticket.find(params[:ticket_id])
+    @ticket.assign_to_engineer(params[:user_id])
+    @user = @ticket.assigned
     @ticket.audit_comment = " #{current_user.full_name} assigned ticket to #{@user.full_name}"
     if @ticket.save  
       UserMailer.ticket_assigned(@ticket.department.head,@ticker.assigned,@ticket).deliver
@@ -119,9 +122,78 @@ class TicketsController < ApplicationController
     respond_to do |format|
       flash[:alert] = 'Error updating the ticket'
       format.html { redirect_to(:back) }
-     format.js { render :text=>"set_alert('Error')"}
-      end
+      format.js { render :text=>"set_alert('Error')"}
+    end
   end
 
 
-end
+  def reassign
+  #  raise 'here'
+    @ticket = Ticket.find(params[:ticket_id])
+    @ticket.assign_to_user(params[:user_id])
+    if @ticket.save
+      respond_to do |format|
+        flash[:notice] = 'Ticket assigned'
+        format.html { redirect_to(:back) }
+      end
+    else
+      respond_to do |format|
+        flash[:alert] = 'Error updating the ticket'
+        format.html { redirect_to(:back) }
+      end
+    end
+
+  end
+
+  def resolve
+  #  raise 'here'
+    @ticket = Ticket.find(params[:id])
+    @ticket.resolve_ticket
+    if @ticket.save
+      respond_to do |format|
+        flash[:notice] = 'Ticket resolved'
+        format.html { redirect_to(:back) }
+      end
+    else
+      respond_to do |format|
+        flash[:alert] = 'Error updating the ticket'
+        format.html { redirect_to(:back) }
+      end
+    end
+  end
+   def close
+  #  raise 'here'
+    @ticket = Ticket.find(params[:id])
+    @ticket.close_ticket
+    if @ticket.save
+      respond_to do |format|
+        flash[:notice] = 'Ticket closed'
+        format.html { redirect_to(:back) }
+      end
+    else
+      respond_to do |format|
+        flash[:alert] = 'Error updating the ticket'
+        format.html { redirect_to(:back) }
+      end
+    end
+  end
+
+   def reopen
+  #  raise 'here'
+    @ticket = Ticket.find(params[:id])
+    @ticket.reopen_ticket
+    if @ticket.save
+      respond_to do |format|
+        flash[:notice] = 'Ticket reopened'
+        format.html { redirect_to(:back) }
+      end
+    else
+      respond_to do |format|
+        flash[:alert] = 'Error updating the ticket'
+        format.html { redirect_to(:back) }
+      end
+    end
+  end
+
+
+ end
