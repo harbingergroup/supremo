@@ -81,4 +81,16 @@ class DepartmentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  # returns users belong to that department
+  def users
+    @dept = Department.find(params[:id])
+    @users = @dept.users
+    respond_to do |format|
+        format.html { redirect_to(:back) }
+        format.js
+      end
+  end
+
 end

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :mytickets,:foreign_key=>'owner_id',:class_name=>"Ticket"
   belongs_to :department
   has_many :comments
-  has_many :mydepartments,:class_name => 'Department',:foreign_key=>:head_id
+  has_many :mydepartments,:class_name => 'Department',:foreign_key=>:head_id,:conditions => "activated = true"
    has_associated_audits
 
   

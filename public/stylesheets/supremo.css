@@ -16,13 +16,33 @@ box-shadow : 0 0 4px #C7FDC7; /*0 0 4px #BCCDD1*/
 
 .float_right { float:right;}
 .clear {clear: both;}
-
+.hidden {display: none;}
 label {
     font-weight: bold;
 }
 
 .green {
     color:green;
+}
+
+
+/****************** Notice & alert ********************/
+.all_notice {
+    color: #FFFFFF;
+    font-size: 120%;
+    font-weight: bold;
+    padding: 15px 10px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    opacity: 0.7;
+}
+#notice,.j_notice {
+    background-color: green;
+}
+.j_alert,#alert {
+    background-color: #F24110;
 }
 /********************** table sorter *************************/
 
@@ -54,6 +74,10 @@ table.tablesorter tbody .tcp_0 td{
  	background: none repeat scroll 0 0 #F2FAFF;
     border-color: #ADD7F3;
     color: #555599;
+}
+
+table.tablesorter{
+	width: 120%;
 }
 
 table.tablesorter tbody .tcp_1 td{

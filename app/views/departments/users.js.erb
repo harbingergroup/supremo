@@ -1,0 +1,6 @@
+var te = '';
+te = "<div>";
+te += <%= collection_select 'dept','users',@users,:id,:full_name%>
+te +="</div>"
+
+$("#dept_users_id").append(te)
