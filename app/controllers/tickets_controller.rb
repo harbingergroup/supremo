@@ -51,6 +51,7 @@ class TicketsController < ApplicationController
     @ticket.audit_comment = "#{current_user.firstname} opened new Ticket for #{@ticket.department.name}"
     respond_to do |format|
       if @ticket.save
+        UserMailer.new_ticket(current_user,@ticket.department.head,@ticket).deliver
         format.html { redirect_to(@ticket, :notice => 'Ticket was successfully created.') }
         format.xml  { render :xml => @ticket, :status => :created, :location => @ticket }
       else
@@ -93,6 +94,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.assign_to_user(params[:user_id])
     if @ticket.save
+      UserMailer.ticket_assigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
       flash[:notice] = 'Succesfully updated the ticket'
       respond_to do |format|
         format.html { redirect_to(:back) }

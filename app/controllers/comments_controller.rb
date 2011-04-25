@@ -39,8 +39,13 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "Successfully created comment."
       @comments = @ticket.comments.all
+    else
+      flash[:alert] = ""
     end
-
+    respond_to do |format|
+      format.html { redirect_to(:back) }
+      format.js
+    end
   end
 
 
@@ -51,6 +56,12 @@ class CommentsController < ApplicationController
     if @comment.update_attributes(params[:comment])
       flash[:notice] = "Successfully updated comment."
       @comments = @ticket.comments.all
+    else
+      flash[:alert] = ""
+    end
+    respond_to do |format|
+      format.html { redirect_to(:back) }
+      format.js
     end
   end
 
@@ -61,5 +72,9 @@ class CommentsController < ApplicationController
     @comment.destroy
     flash[:notice] = "Successfully destroyed comment."
     @comments = @ticket.comments.all
+    respond_to do |format|
+      format.html { redirect_to(:back) }
+      format.js
+    end
   end
 end
