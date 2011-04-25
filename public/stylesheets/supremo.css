@@ -76,6 +76,10 @@ table.tablesorter tbody .tcp_0 td{
     color: #555599;
 }
 
+table.tablesorter{
+	width: 120%;
+}
+
 table.tablesorter tbody .tcp_1 td{
  	    background: none repeat scroll 0 0 #D2EEFF;
     border-color: #9ED2F2;
