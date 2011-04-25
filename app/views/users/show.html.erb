@@ -21,37 +21,20 @@
 </p>
 
 <br/>
-<%- unless @mydepts.empty?%>
-<b> Departments I Manage </b>
-<div class="mydepartments">
-  <ul>
-  <%- @mydepts.each do |m| %>
-    <li><%= link_to m.name,department_path(m) %></li>
-  <%- end %>
-  </ul>
+
+<!-- ************ For my depatment logic *********** -->
+<%= render "dept_and_tickets" %>
+
+<!-- For Tickets assigned to me -->
+<%#  order = {:headers => ['title','description','Owner','Assigned to dept'],
+             :methods => ['title','description','owner','department']}%>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@mytickets,:title=>"Listing My Tickets"} %>
+<%#= render :partial=>"tickets/testtickets",:locals=>{:tickets=>@mytickets,:title=>"Tickets",:order=>order} %>
+<!-- Assigned to me -->
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets,:title=>"Listing Tickets assigned to me"} %>
+
+
+<div class="hidden" id="dept_users_id">
 </div>
-
-<b> Tickets to assign </b>
-<div class="tickts_to_assign">
-  <ul>
-  <%- @ticketsta.each do |t| %>
-    <li id="ta_<%= t.id %>">
-      <div>
-          <%= link_to t.title,ticket_path(t) %>
-          <%= link_to 'Assign to',assign_ticket_url(t.id,1),:remote=>true %>
-      </div>
-      <div>
-        <%= truncate(t.description,:length=>50,:omission => '...') %>
-      </div>
-      <div> &nbsp; </div>
-    </li>
-  <%- end %>
-  </ul>
-</div>
-
-<% end %>
-
-
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -1,0 +1,31 @@
+<%- unless @mydepts.empty?%>
+<b> Departments I Manage </b>
+<div class="mydepartments">
+  <ul>
+  <%- @mydepts.each do |m| %>
+    <li><%= link_to m.name,department_path(m) %></li>
+  <%- end %>
+  </ul>
+</div>
+
+<b> Tickets to assign </b>
+<div class="tickts_to_assign">
+  <ul>
+  <%- @ticketsta.each do |t| %>
+    <li id="ta_<%= t.id %>">
+      <div>
+          <%= link_to t.title,ticket_path(t) %>
+          <%= link_to 'Assign to',users_department_url(t.department_id),:remote=>true %>
+        <span id="ticket_person_id_<%=t.id%>"></span>
+
+      </div>
+      <div>
+        <%= truncate(t.description,:length=>50,:omission => '...') %>
+      </div>
+      <div> &nbsp; </div>
+    </li>
+  <%- end %>
+  </ul>
+</div>
+
+<% end %>

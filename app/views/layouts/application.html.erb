@@ -9,8 +9,14 @@
  </head>
 <body class=<%=controller.action_name%>>
 
-<div id="notice"><%= notice %></div>
-<div id="alert"><%= alert %></div>
+  <%- if notice %>
+    <div id="notice" class="hidden all_notice"><%= notice %></div>
+  <% end %>
+ <div class="j_notice hidden all_notice"></div>
+   <%- if alert %>
+ <div id="alert" class="hidden all_notice"><%= alert %></div>
+<%- end %>
+<div class="j_alert hidden all_notice"></div>
 <div class="float_right"><%= render :partial=>'welcome/menu'%></div>
 <div class="clear"></div>
 <%= yield %>

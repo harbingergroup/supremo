@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <b>Title:</b>
@@ -23,8 +23,22 @@
 
 <p>
   <b>Status:</b>
-  <%= @ticket.status %>
+  <%= @ticket.print_status %>
 </p>
+
+<% if @ticket.not_assigned? %>
+<div class="assign_to_cover">
+  <b>Assign to : </b>
+  <%= form_tag assign_ticket_url(@ticket),:remote=>true do %>
+    <%= collection_select '','user_id',@department_users,:id,:full_name %>
+    <%= submit_tag "Assign" %>
+  <% end %>
+</div>
+
+<% else %>
+  <b> Assigned_to : </b>
+  <%= @ticket.assigned.full_name %>
+<% end %>
 
 <p>
   Log Trail:

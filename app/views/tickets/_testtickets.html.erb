@@ -1,0 +1,24 @@
+<h3><%= title %></h3>
+<% order ||= ['title'] %>
+<table class="tablesorter">
+  <thead>
+  <tr>
+   <%- order[:headers].each do |o|%>
+    <th><%= o %></th>
+   <%- end %>
+  </tr>
+  </thead>
+  <tbody
+<% tickets.each do |ticket| %>
+  <tr>
+    <%- order[:methods].each do |o|%>
+    <td><%= ticket.send(o) %></td>
+   <%- end %>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Ticket', new_ticket_path %>

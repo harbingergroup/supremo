@@ -19,6 +19,8 @@ class UsersController < ApplicationController
     unless @mydepts.empty?
       @ticketsta = tickets_to_assign(@mydepts)
     end
+    @mytickets = @user.mytickets
+    @tickets = @user.tickets
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -44,15 +46,16 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-   
+
     @user = User.new(params[:user])
     @user.type = params[:user]['type'] ? params[:user]['type'] : 'Engineer'
-    
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
+         @depts = Department.all
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -86,4 +89,5 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

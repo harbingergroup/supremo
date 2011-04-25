@@ -9,9 +9,16 @@ class Ticket < ActiveRecord::Base
 
 
   #has_associated_audits
-
+  TSTATUS = ['open','close','resolved','reopen']
   def assign_to_user(user_id)
     update_attribute(:assigned_to,user_id)
   end
- 
+
+  def print_status
+    TSTATUS[status.to_i]
+  end
+
+  def not_assigned?
+    assigned_to.nil?
+  end
 end

@@ -1,16 +1,23 @@
 Supremo::Application.routes.draw do
   resources :tickets
+ # root :to=>"devise/sessions#new"
   resources :comments
-  resources :departments
+  resources :departments do
+    member do
+      get 'users'
+    end
+  end
+
   devise_for :users,:controllers => { :registrations => "registrations" } do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
+     root :to => "devise/sessions#new"
   end
   resources :users
   resources :admins,:controller=>:users
   resources :engineers,:controller=>:users
-  match 'tickets/:ticket_id/assign/:user_id',:to=>'tickets#assign',:as=>'assign_ticket'
-  root :to=>"tickets#new"
+  match 'tickets/:ticket_id/assign(/:user_id)',:to=>'tickets#assign',:as=>'assign_ticket'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

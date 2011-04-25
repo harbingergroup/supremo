@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.xml
   def index
-   
+
     @tickets = Ticket.all
 
     respond_to do |format|
@@ -15,9 +15,10 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.xml
   def show
-    
+
     @ticket = Ticket.find(params[:id])
     @audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=?",['Ticket','Comment'], @ticket.id, @ticket.id])
+    @department_users = @ticket.department.users
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @ticket }
@@ -38,7 +39,7 @@ class TicketsController < ApplicationController
   # GET /tickets/1/edit
   def edit
     @ticket = Ticket.find(params[:id])
-     @departments = Department.all
+    @departments = Department.all
   end
 
   # POST /tickets
@@ -87,13 +88,18 @@ class TicketsController < ApplicationController
     end
   end
 
-   def assign
+  def assign
+#    raise 'here '
     @ticket = Ticket.find(params[:ticket_id])
-    @ticket.assign_to_user(params[:user_id])
-    if @ticket.save
-      flash[:notice] = 'Succesfully updated the ticket'
+    #@ticket.assign_to_user(params[:user_id])
+    #@user = @ticket.assigned
+    @user = User.find(5)
+    @ticket.audit_comment = " #{current_user.full_name} assigned ticket to #{@user.full_name}"
+    if @ticket.save      
       respond_to do |format|
-        format.html { redirect_to(:back) }
+        format.html {
+          flash[:notice] = 'Succesfully updated the ticket'
+          redirect_to(:back) }
         format.js
       end
     else
@@ -103,7 +109,14 @@ class TicketsController < ApplicationController
         format.js
       end
     end
-
+  rescue=>e
+    logger.debug "error in ticket assign --------"+e.inspect
+    respond_to do |format|
+      flash[:alert] = 'Error updating the ticket'
+      format.html { redirect_to(:back) }
+     format.js { render :text=>"set_alert('Error')"}
+      end
   end
+
 
 end
