@@ -45,6 +45,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
+        UserMailer.department_creation(current_user,@department.head,@department).deliver
         format.html { redirect_to(@department, :notice => 'Department was successfully created.') }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else
