@@ -15,7 +15,8 @@ class DepartmentsController < ApplicationController
   # GET /departments/1.xml
   def show
     @department = Department.find(params[:id])
-
+    @new_tickets = Ticket.find_all_by_department_id(@department.id, :conditions => ["status=?",0])
+    @reopned_tickets = Ticket.find_all_by_department_id(@department.id, :conditions => ["status=?", 3])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @department }

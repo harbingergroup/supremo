@@ -93,7 +93,7 @@ class TicketsController < ApplicationController
   end
 
   def assign
-#   raise 'here '
+    #   raise 'here '
     @ticket = Ticket.find(params[:ticket_id])
     #@ticket.assign_to_user(params[:user_id])
     #@user = @ticket.assigned
@@ -119,9 +119,16 @@ class TicketsController < ApplicationController
     respond_to do |format|
       flash[:alert] = 'Error updating the ticket'
       format.html { redirect_to(:back) }
-     format.js { render :text=>"set_alert('Error')"}
-      end
+      format.js { render :text=>"set_alert('Error')"}
+    end
   end
 
+  def closed
+    @closed_tickets = Ticket.find_all_by_department_id(params[:department_id], :conditions => ["status=?", 4])
+  end
+
+  def assigned
+    @assigned_tickets = Ticket.find_all_by_department_id(params[:department_id], :conditions => ["status=?", 1])
+  end
 
 end
