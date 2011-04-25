@@ -1,0 +1,1 @@
+$("#commentslist").html("<%= escape_javascript( render(:partial => "tickets/comment", :locals => {:comments => @comments}) ) %>");

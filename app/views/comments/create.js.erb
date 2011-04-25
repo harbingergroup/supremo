@@ -1,0 +1,2 @@
+$("#commentslist").html("<%= escape_javascript( render(:partial => "tickets/comment", :locals => {:ticket => @ticket}) ) %>");
+$("flash_notice").show(300);

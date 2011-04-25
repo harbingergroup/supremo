@@ -15,8 +15,10 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.xml
   def show
-    
+    @comment = Comment.new
+    #@comment.audit_comment = "#{current_user.firstname} added comment for Ticket - # #{@comment.ticket_id} "
     @ticket = Ticket.find(params[:id])
+    @comments = @ticket.comments.all
     @audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=?",['Ticket','Comment'], @ticket.id, @ticket.id])
     respond_to do |format|
       format.html # show.html.erb

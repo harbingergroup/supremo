@@ -1,6 +1,8 @@
 Supremo::Application.routes.draw do
-  resources :tickets
-  resources :comments
+  resources :tickets do
+    resources :comments
+  end
+  #resources :comments
   resources :departments
   devise_for :users,:controllers => { :registrations => "registrations" } do
     get "/login" => "devise/sessions#new"
