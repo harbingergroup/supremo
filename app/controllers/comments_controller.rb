@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully created comment."
       @comments = @ticket.comments.all
     else
-      flash[:alert] = ""
+      flash[:alert] = "Error"
     end
     respond_to do |format|
       format.html { redirect_to(:back) }
@@ -57,7 +57,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully updated comment."
       @comments = @ticket.comments.all
     else
-      flash[:alert] = ""
+      flash[:alert] = "Error"
     end
     respond_to do |format|
       format.html { redirect_to(:back) }

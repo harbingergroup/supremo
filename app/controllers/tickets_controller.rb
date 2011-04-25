@@ -97,10 +97,10 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:ticket_id])
     #@ticket.assign_to_user(params[:user_id])
     #@user = @ticket.assigned
-    @user = User.find(5)
+    @user = User.find(3)
     @ticket.audit_comment = " #{current_user.full_name} assigned ticket to #{@user.full_name}"
     if @ticket.save  
-      UserMailer.ticket_assigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
+      UserMailer.ticket_assigned(@ticket.department.head,@ticker.assigned,@ticket).deliver
       respond_to do |format|
         format.html {
           flash[:notice] = 'Succesfully updated the ticket'
