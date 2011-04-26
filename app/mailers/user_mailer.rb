@@ -19,6 +19,34 @@ class UserMailer < ActionMailer::Base
     mail(:from => sender.email, :to => receiver.email, :subject => "New Ticket assigned")
   end
 
+  def ticket_reassigned(sender,receiver,ticket)
+    @sender = sender
+    @receiver = receiver
+    @ticket = ticket
+    mail(:from => sender.email, :to => receiver.email, :subject => "Ticket reassigned")
+  end
+
+  def ticket_resolved(sender,receiver,ticket)
+    @sender = sender
+    @receiver = receiver
+    @ticket = ticket
+    mail(:from => sender.email, :to => receiver.email, :subject => "Ticket resolved")
+  end
+
+  def ticket_closed(sender,receiver,ticket)
+    @sender = sender
+    @receiver = receiver
+    @ticket = ticket
+    mail(:from => sender.email, :to => receiver.email, :subject => "Ticket closed")
+  end
+
+  def ticket_reopen(sender,receiver,ticket)
+    @sender = sender
+    @receiver = receiver
+    @ticket = ticket
+    mail(:from => sender.email, :to => receiver.email, :subject => "Ticket reopen")
+  end
+
   def department_creation(sender,receiver,department)
       @sender = sender
       @receiver = receiver

@@ -131,6 +131,7 @@ class TicketsController < ApplicationController
     log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
     add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
+      UserMailer.ticket_reassigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
       respond_to do |format|
         format.html {
           @comments = @ticket.comments.all
@@ -159,6 +160,7 @@ class TicketsController < ApplicationController
     log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
     add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
+      UserMailer.ticket_resolved(@ticket.department.head,@ticket.assigned,@ticket).deliver
       respond_to do |format|
         format.html {
           @comments = @ticket.comments.all
@@ -181,6 +183,7 @@ class TicketsController < ApplicationController
     log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
     add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
+      UserMailer.ticket_closed(@ticket.department.head,@ticket.assigned,@ticket).deliver
       respond_to do |format|
         format.html {
           flash[:notice] = 'Ticket closed'
@@ -203,6 +206,7 @@ class TicketsController < ApplicationController
     log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
     add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
+      UserMailer.ticket_reopen(@ticket.department.head,@ticket.assigned,@ticket).deliver
       respond_to do |format|
         format.html {
           flash[:notice] = 'Ticket reopened'

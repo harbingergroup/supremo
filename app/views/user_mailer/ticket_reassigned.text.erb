@@ -1,0 +1,5 @@
+Hi <%=@receiver.full_name%>,
+Ticket is been reassigned to you by <%=@sender.full_name%> on <%=@ticket.updated_at.strftime("%d %B %Y")%>
+Ticket details:
+<%=@ticket.title%>
+<%=@ticket.description%>
