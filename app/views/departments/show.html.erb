@@ -7,7 +7,7 @@
 
 <p>
   <b>Head:</b>
-  <%= @department.head_id %>
+  <%= @department.head.full_name %>
 </p>
 
 <p>
@@ -15,6 +15,13 @@
   <%= @department.activated %>
 </p>
 
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"New Tickets"} %>
 
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopned_tickets,:title=>"Reopned Tickets"} %>
+
+<%=link_to "Assigned tickets", assigned_ticket_path(:department_id => @department.id)%>
+<br/>
+<%=link_to "Closed tickets", closed_ticket_path(:department_id => @department.id)%>
+<br/>
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>

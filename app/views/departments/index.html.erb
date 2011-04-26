@@ -13,7 +13,7 @@
 <% @departments.each do |department| %>
   <tr>
     <td><%= department.name %></td>
-    <td><%= department.head_id %></td>
+    <td><%= department.head.full_name %></td>
     <td><%= department.activated %></td>
     <td><%= link_to 'Show', department %></td>
     <td><%= link_to 'Edit', edit_department_path(department) %></td>

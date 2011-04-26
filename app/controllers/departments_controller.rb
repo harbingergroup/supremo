@@ -15,7 +15,8 @@ class DepartmentsController < ApplicationController
   # GET /departments/1.xml
   def show
     @department = Department.find(params[:id])
-
+    @new_tickets = Ticket.find_all_by_department_id(@department.id, :conditions => ["status=?",0])
+    @reopned_tickets = Ticket.find_all_by_department_id(@department.id, :conditions => ["status=?", 3])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @department }
@@ -45,6 +46,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
+        UserMailer.department_creation(current_user,@department.head,@department).deliver
         format.html { redirect_to(@department, :notice => 'Department was successfully created.') }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else

@@ -1,0 +1,5 @@
+Hi <%=@receiver.full_name%>,
+New Department is been created and assigned to you by <%=@sender.full_name%> on <%=@department.created_at.strftime("%d %B %Y")%>
+Department Details:
+Name : <%=@department.name%>
+Head : <%=@department.head.full_name%>
