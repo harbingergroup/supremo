@@ -7,7 +7,9 @@ $(document).ready(function(){
         autoOpen: false,
         title: "Comment",
         height: 370,
-        width: 430
+        width: 430,
+        modal: true
+
     });
     $('#resolve_ticket_link').live("click",function() {
         $( "#resolve_ticket_form" ).dialog('open');
@@ -20,7 +22,8 @@ $(document).ready(function(){
         autoOpen: false,
         title: "Comment",
         height: 370,
-        width: 430
+        width: 430,
+        modal: true
     });
     $('#reassign_to_owner_link').live("click",function() {
         $( "#reassign_ticket_form" ).dialog('open');
@@ -33,7 +36,8 @@ $(document).ready(function(){
         autoOpen: false,
         title: "Comment",
         height: 370,
-        width: 430
+        width: 430,
+        modal: true
     });
     $('#close_ticket_link').live("click",function() {
         $( "#close_ticket_form" ).dialog('open');
@@ -46,7 +50,8 @@ $(document).ready(function(){
         autoOpen: false,
         title: "Comment",
         height: 370,
-        width: 430
+        width: 430,
+        modal: true
     });
     $('#reopen_ticket_link').live("click",function() {
         $( "#reopen_ticket_form" ).dialog('open');
