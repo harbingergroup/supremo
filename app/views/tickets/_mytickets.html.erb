@@ -22,8 +22,10 @@
     <td><%= ticket.department.name %></td>
     <td><%= ticket.status %></td>
     <td><%= link_to 'Show', ticket %></td>
-    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-    <td><%= button_to('Destroy', ticket, :confirm => 'Are you sure?', :method => :delete) %></td>
+    <%#if access == "Y" %>
+      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+      <td><%= button_to('Destroy', ticket, :confirm => 'Are you sure?', :method => :delete) %></td>
+   <%#end%>
   </tr>
 <% end %>
   </tbody>

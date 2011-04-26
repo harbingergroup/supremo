@@ -34,12 +34,14 @@
 </div>
 <% end %>
 
-<% case current_user.id %>
-<% when (@ticket.head_of_department).id %>
+<% #case current_user.id %>
+<% if (@ticket.head_of_department).id == @user_id %>
   <%= render :partial=>'tickets/head_ticket_show' %>
-<% when @ticket.owner_id %>
+<% end %>
+<% if @ticket.owner_id == @user_id %>
   <%= render :partial=>'tickets/owner_ticket_show' %>
-<% when @ticket.assigned_to %>
+<% end %>
+<% if @ticket.assigned_to == @user_id%>
   <%= render :partial=>'tickets/engg_ticket_show' %>
 <% end %>
 
@@ -59,6 +61,7 @@
 
 
 
+
 <p>
   Log Trail:
 <table>
@@ -71,3 +74,31 @@
 </p>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <%= link_to 'Back', tickets_path %>
+
+
+
+
+
+
+
+
+<div id="resolve_ticket_form" style="display:none">
+  <%=render :partial => "resolve_ticket"%>
+</div>
+
+<div id="reassign_ticket_form" style="display:none">
+  <%=render :partial => "reassign_ticket", :locals => {:ticket=> @ticket,:assigned_to => @ticket.owner_id}%>
+</div>
+
+<div id="reassign_ticket_to_someone_form" style="display:none">
+  <%=render :partial => "reassign_ticket", :locals => {:ticket => @ticket,:assigned_to => @ticket.original_assigned_to }%>
+</div>
+
+<div id="close_ticket_form" style="display:none">
+  <%=render :partial => "close_ticket_form"%>
+</div>
+
+<div id="reopen_ticket_form" style="display:none">
+  <%=render :partial => "reopen_ticket_form"%>
+</div>
+

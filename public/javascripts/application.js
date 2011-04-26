@@ -1,8 +1,60 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+
 $(document).ready(function(){
-     $(".all_notice").hide();
+    $( "#resolve_ticket_form" ).dialog({
+        autoOpen: false
+    });
+    $('#resolve_ticket_link').live("click",function() {
+        $( "#resolve_ticket_form" ).dialog('open');
+        return false;
+    });
+})
+
+$(document).ready(function(){
+    $( "#reassign_ticket_form" ).dialog({
+        autoOpen: false
+    });
+    $('#reassign_to_owner_link').live("click",function() {
+        $( "#reassign_ticket_form" ).dialog('open');
+        return false;
+    });
+})
+
+$(document).ready(function(){
+    $( "#close_ticket_form" ).dialog({
+        autoOpen: false
+    });
+    $('#close_ticket_link').live("click",function() {
+        $( "#close_ticket_form" ).dialog('open');
+        return false;
+    });
+})
+
+$(document).ready(function(){
+    $( "#reopen_ticket_form" ).dialog({
+        autoOpen: false
+    });
+    $('#reopen_ticket_link').live("click",function() {
+        $( "#reopen_ticket_form" ).dialog('open');
+        return false;
+    });
+})
+
+$(document).ready(function(){
+    $( "#reassign_ticket_to_someone_form" ).dialog({
+        autoOpen: false
+    });
+    $('#reassign_to_someone_link').live("click",function() {
+        $( "#reassign_ticket_to_someone_form" ).dialog('open');
+        return false;
+    });
+})
+
+
+$(document).ready(function(){
+    $(".all_notice").hide();
     $("#notice").slideDown("slow");
     $("#notice").setHovers();
     setTimeout(function(){
@@ -47,7 +99,7 @@ $(document).ready(function(){
 jQuery.fn.hideNotice = function(){
     if($(this).hasClass("hovered")){
         // setTimeout(function(){$(this).hideNotice();},500);  // Or
-       $(this).addClass("aghovered")
+        $(this).addClass("aghovered")
     }
     else{
         $(this).slideUp();
@@ -59,10 +111,12 @@ jQuery.fn.setHovers= function(){
             $(this).addClass('hovered');
         },
         function(){
-             if ($(this).hasClass("aghovered")){$(this).slideUp();}
+            if ($(this).hasClass("aghovered")){
+                $(this).slideUp();
+            }
             else{
-            $(this).removeClass('hovered');
-        }
+                $(this).removeClass('hovered');
+            }
         }
         );
 }

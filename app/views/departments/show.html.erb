@@ -15,9 +15,9 @@
   <%= @department.activated %>
 </p>
 
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"New Tickets"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"New Tickets", :access => "N"} %>
 
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopned_tickets,:title=>"Reopned Tickets"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopned_tickets,:title=>"Reopned Tickets", :access => "N"} %>
 
 <%=link_to "Assigned tickets", assigned_ticket_path(:department_id => @department.id)%>
 <br/>

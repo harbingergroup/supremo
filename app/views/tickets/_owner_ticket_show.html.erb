@@ -1,10 +1,21 @@
 
 <% unless @ticket.closed? %>
 <br/>
- <%= link_to 'Close Ticket',close_ticket_url(@ticket) %>
+ <%#= link_to 'Close Ticket',close_ticket_url(@ticket) %>
 <% if @ticket.is_resolved? %> 
-   | <%= link_to 'Reopen Ticket',reopen_ticket_url(@ticket) %>
+   | <%#= link_to 'Reopen Ticket',reopen_ticket_url(@ticket) %>
 <% elsif @ticket.assigned_to == current_user.id %>
-  | <%= link_to 'Reassign',reassign_ticket_url(@ticket,@ticket.original_assigned_to) %>
+  | <%#= link_to 'Reassign',reassign_ticket_url(@ticket,@ticket.original_assigned_to) %>
+<% end %>
+  <% end %>
+
+
+<% unless @ticket.closed? %>
+<br/>
+ <%= link_to 'Close Ticket',"", :id => "close_ticket_link" %>
+<% if @ticket.is_resolved? %>
+   | <%= link_to 'Reopen Ticket',"", :id => "reopen_ticket_link" %>
+<% elsif @ticket.assigned_to == current_user.id %>
+  | <%= link_to 'Reassign',"", :id => "reassign_to_someone_link" %>
 <% end %>
   <% end %>
