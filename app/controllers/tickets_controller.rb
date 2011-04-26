@@ -128,8 +128,8 @@ class TicketsController < ApplicationController
     #  raise 'here'
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.assign_to_user(params[:user_id])
-    @comment = current_user.comments.new(:description => params[:comment], :ticket_id => @ticket.id)
-    @comment.audit_comment = "#{current_user.firstname} added comment for Ticket - # #{@comment.ticket_id} "
+    log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
+    add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
       respond_to do |format|
         format.html {
@@ -156,7 +156,8 @@ class TicketsController < ApplicationController
     @ticket.resolve_ticket
     #@ticket = Ticket.find_by_id(params[:ticket_id])
     @comment = current_user.comments.new(:description => params[:comment], :ticket_id => @ticket.id)
-    @comment.audit_comment = "#{current_user.firstname} added comment for Ticket - # #{@comment.ticket_id} "
+    log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
+    add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
       respond_to do |format|
         format.html {
@@ -177,8 +178,8 @@ class TicketsController < ApplicationController
     #  raise 'here'
     @ticket = Ticket.find(params[:id])
     @ticket.close_ticket
-    @comment = current_user.comments.new(:description => params[:comment], :ticket_id => @ticket.id)
-    @comment.audit_comment = "#{current_user.firstname} added comment for Ticket - # #{@comment.ticket_id} "
+    log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
+    add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
       respond_to do |format|
         format.html {
@@ -199,8 +200,8 @@ class TicketsController < ApplicationController
     #  raise 'here'
     @ticket = Ticket.find(params[:id])
     @ticket.reopen_ticket
-    @comment = current_user.comments.new(:description => params[:comment], :ticket_id => @ticket.id)
-    @comment.audit_comment = "#{current_user.firstname} added comment for Ticket - # #{@comment.ticket_id} "
+    log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
+    add_comment(@ticket,params[:comment],log)
     if @ticket.save && @comment.save
       respond_to do |format|
         format.html {
@@ -215,6 +216,11 @@ class TicketsController < ApplicationController
         format.html { redirect_to(:back) }
       end
     end
+  end
+
+  def add_comment(ticket,comment,log)
+    @comment = current_user.comments.new(:description => comment, :ticket_id => ticket.id)
+    @comment.audit_comment = log
   end
 
   def closed
