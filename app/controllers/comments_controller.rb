@@ -50,8 +50,10 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:alert] = "Error"
-          redirect_to(:back) }
-        format.js
+          redirect_to(:back) 
+          @comments = @ticket.comments.all
+          }
+        format.js{@comments = @ticket.comments.all}
       end
     end
   end
