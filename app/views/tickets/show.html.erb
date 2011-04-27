@@ -18,14 +18,11 @@
 		<% end %>
 	</tr>
 	<tr>
-		<td colspan="2"><b>Description:</b> </td>
-	</tr>
-	<tr>
-		<td><%= @ticket.description %></td>	
+		<td><b>Description:</b> </td>
+	        <td><%= @ticket.description %></td>
 	</tr>
 </table>	
 <hr/>
-
 <% #case current_user.id %>
 <% if (@ticket.head_of_department).id == @user_id %>
   <%= render :partial=>'tickets/head_ticket_show' %>
@@ -38,7 +35,7 @@
 <% end %>
 <hr/>
 <br/>
-<h4>Comments</h4>
+<b>Comments</b>
 <div id="commentslist">
   <%=render :partial => "comment"%>
 </div>

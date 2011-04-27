@@ -8,6 +8,7 @@ class Ticket < ActiveRecord::Base
   acts_as_audited :associated_with => :assigned, :foreign_key => "assigned_to", :class_name => "User"
 
 
+  scope :recent,order("created_at DESC")
   scope :new_tickets,where("status = 0")
   scope :assigned_tickets,where("status = 1")
   scope :resolved_tickets,where("status = 2")

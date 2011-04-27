@@ -1,0 +1,3 @@
+<%=  render :template=>"tickets/_mytickets",:locals=>{:tickets=>@tickets,:title=>controller.action_name.humanize+" - "+@department.name,:access=>"N"} %>
+
+<%= link_to "Back",department_path(@department) %>
