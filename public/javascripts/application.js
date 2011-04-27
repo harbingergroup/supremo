@@ -85,3 +85,53 @@ function set_alert(notice){
         $(".j_alert").hideNotice();
     },3000);
 }
+
+$(function() {
+		$( "#accordion" ).accordion({
+			collapsible: true
+		});
+});
+
+/*************accordian**************/
+$(document).ready(function() {
+       $("#accordion").accordion({ active: false});
+});
+
+
+/************Login Page dialog*********/
+$.fx.speeds._default = 1100;
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "slide",
+			modal: true,
+			title: "Login",
+			hide: "clip",
+			
+		});
+
+		$( "#login_link" ).click(function() {
+			$( "#dialog" ).dialog("open");
+			return false;
+		});
+});
+
+/***************Comments dialog****************/
+$.fx.speeds._default = 1100;
+	$(function() {
+		$( "#new_comment" ).dialog({
+			autoOpen: false,
+			show: "slide",
+			modal: true,
+			title: "Add your comment",
+			hide: "clip",
+			width: 428,
+			height: 375
+			
+		});
+
+		$( "#comment_link" ).click(function() {
+			$( "#new_comment" ).dialog("open");
+			return false;
+		});
+});

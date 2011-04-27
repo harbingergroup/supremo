@@ -1,23 +1,13 @@
-
-
-<p>
-  <b>Name:</b>
-  <%= @department.name %>
-</p>
-
-<p>
-  <b>Head:</b>
-  <%= @department.head.full_name %>
-</p>
-
-<p>
-  <b>Activated:</b>
-  <%= @department.activated %>
-</p>
-
+<br/>
+<h3><%= @department.name %></h3>
+<b>Head:</b><%= @department.head.full_name %>
+<br/>
+<b>Activated:</b><%= @department.activated %>
+<br/>
+&nbsp;
 <%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"New Tickets"} %>
 
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopned_tickets,:title=>"Reopned Tickets"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopned_tickets,:title=>"Re-opened Tickets"} %>
 
 <%=link_to "Assigned tickets", assigned_ticket_path(:department_id => @department.id)%>
 <br/>
