@@ -8,6 +8,12 @@ class Ticket < ActiveRecord::Base
   acts_as_audited :associated_with => :assigned, :foreign_key => "assigned_to", :class_name => "User"
 
 
+  scope :new_tickets,where("status = 0")
+  scope :assigned_tickets,where("status = 1")
+  scope :resolved_tickets,where("status = 2")
+  scope :reopened_tickets,where("status = 3")
+  scope :closed_tickets,where("status = 4")
+
   #has_associated_audits
   TSTATUS = ['open','assigned','resolved','reopened','closed']
   def assign_to_user(user_id)
