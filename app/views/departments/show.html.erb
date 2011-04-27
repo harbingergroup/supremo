@@ -3,6 +3,7 @@
 <b>Head :</b><%= link_to @department.head.full_name.capitalize,user_path(@department.head) %>
 <div class="clear">&nbsp;</div>
 
+<div class="t_accordian">
 <div id="tickets_accordion">
 	<h5>
 	<a href="#">New tickets</a>
@@ -49,6 +50,7 @@
 		<%= link_to "View All Closed tickets", closed_tickets_department_path(@department.id)%>
 		<div class="clear">&nbsp;</div>
 	</div>
+</div>
 </div>
 <div class="clear">&nbsp;</div>
 

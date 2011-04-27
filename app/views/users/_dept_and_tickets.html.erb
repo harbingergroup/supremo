@@ -1,5 +1,6 @@
 <%- unless @mydepts.empty?%>
 <h5 class="section_header">Departments you manage</h5>
+<div class="clear">&nbsp;</div>
 <div class="mydepartments">
   <ul>
   <%- @mydepts.each do |m| %>
@@ -7,7 +8,7 @@
   <%- end %>
   </ul>
 </div>
-<hr/>
+
 <div class="tickts_to_assign">
   <ul>
   <%- @ticketsta.each do |t| %>
