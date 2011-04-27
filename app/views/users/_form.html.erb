@@ -1,44 +1,54 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
+<% if @user.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+	<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :firstname %><br />
-    <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :lastname %><br />
-    <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  
-   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  
-   <div class="field">
-    <%= f.label :password_confirm %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="field">
-    <%= f.label :department_id %><br />
-    <%= f.collection_select :department_id,@depts,:id,:name_with_head %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="field">
+	<%= f.label :firstname %>
+	<br />
+	<%= f.text_field :firstname %>
+</div>
+<div class="field">
+	<%= f.label :lastname %>
+	<br />
+	<%= f.text_field :lastname %>
+</div>
+<div class="field">
+	<%= f.label :email %>
+	<br />
+	<%= f.text_field :email %>
+</div>
+<div class="field">
+	<%= f.label :password %>
+	<br />
+	<%= f.password_field :password %>
+</div>
+<div class="field">
+	<%= f.label :password_confirm %>
+	<br />
+	<%= f.password_field :password_confirmation %>
+</div>
+<div class="field">
+	<%= f.label :department_id %>
+	<br />
+	<%= f.collection_select :department_id,@depts,:id,:name_with_head %>
+</div>
+<div class="field">
+	<%= f.fields_for(:image) do |b| %>
+	<%= b.label :photo , "Profile picture "%>
+	<%= b.file_field :photo %>
+	<%end%>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
 <% end %>
