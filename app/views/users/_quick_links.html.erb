@@ -1,21 +1,19 @@
-<br/>
-<br/>
 <h4><b>Quick links</b></h4>
-<div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons">
-	<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top ui-state-hover">
+<div id="accordion" class="my_class">
+	<h3>
 	<a href="#">Department</a>
 	</h3>
-	<div>
+	<div class="accordion_content">
 		<ul>
 			<li>
 				<%= link_to 'My Departments', '#'%>
 			</li>
 		</ul>
 	</div>
-	<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top ui-state-hover">
+	<h3>
 	<a href="#">Ticket</a>
 	</h3>
-	<div>
+	<div class="accordion_content">
 		<ul>
 			<li>
 				<%= link_to 'My tickets', '#'%>
@@ -25,10 +23,10 @@
 			</li>
 		</ul>
 	</div>
-	<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top ui-state-hover">
+	<h3>
 	<a href="#">Profile</a>
 	</h3>
-	<div>
+	<div class="accordion_content">
 		<ul>
 			<li>
 				<%= link_to 'Edit profile', edit_user_path(current_user) %>

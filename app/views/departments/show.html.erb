@@ -1,27 +1,56 @@
-
-<br/>
+<div class="clear">&nbsp;</div>
 <h3><%= @department.name %></h3>
-<b>Head : </b><%= link_to @department.head.full_name.capitalize,user_path(@department.head) %>
-<br/>
+<b>Head :</b><%= link_to @department.head.full_name.capitalize,user_path(@department.head) %>
+<div class="clear">&nbsp;</div>
 
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"New Tickets", :access => "N"} %>
-<%=link_to "View All New Tickets", new_tickets_department_path(@department.id)%>
-
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@assigned_tickets,:title=>"Assigned Tickets", :access => "N"} %>
-<%=link_to "View All Assigned tickets", assigned_tickets_department_path(@department.id)%>
-
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@resolved_tickets,:title=>"Resolved Tickets", :access => "N"} %>
-<%=link_to "View All Resolved tickets", resolved_tickets_department_path(@department.id)%>
-
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopened_tickets,:title=>"Re-opened Tickets", :access => "N"} %>
-<%=link_to "View All Re-opened tickets", reopened_tickets_department_path(@department.id)%>
-
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@closed_tickets,:title=>"Closed Tickets", :access => "N"} %>
-<%=link_to "View All Closed tickets", closed_tickets_department_path(@department.id)%>
-
-<br/>
-
-
+<div id="tickets_accordion">
+	<h5>
+	<a href="#">New tickets</a>
+	</h5>
+	<div class="accordion_content">
+		<%#= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"New Tickets", :access => "N"} %>
+		<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@new_tickets,:title=>"", :access => "N"} %>
+		<%= link_to "View All New Tickets", new_tickets_department_path(@department.id)%>
+		<div class="clear">&nbsp;</div>
+	</div>
+	<h5>
+	<a href="#">Assigned tickets</a>
+	</h5>
+	<div class="accordion_content">
+		<%#= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@assigned_tickets,:title=>"Assigned Tickets", :access => "N"} %>
+		<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@assigned_tickets,:title=>"", :access => "N"} %>
+		<%= link_to "View All Assigned tickets", assigned_tickets_department_path(@department.id)%>
+		<div class="clear">&nbsp;</div>
+	</div>
+	<h5>
+	<a href="#">Resolved tickets</a>
+	</h5>
+	<div class="accordion_content">
+		<%#= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@resolved_tickets,:title=>"Resolved Tickets", :access => "N"} %>
+		<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@resolved_tickets,:title=>"", :access => "N"} %>
+		<%= link_to "View All Resolved tickets", resolved_tickets_department_path(@department.id)%>
+		<div class="clear">&nbsp;</div>
+	</div>
+	<h5>
+	<a href="#">Re-opened tickets</a>
+	</h5>
+	<div class="accordion_content">
+		<%#= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopened_tickets,:title=>"Re-opened Tickets", :access => "N"} %>
+		<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@reopened_tickets,:title=>"", :access => "N"} %>
+		<%= link_to "View All Re-opened tickets", reopened_tickets_department_path(@department.id)%>
+		<div class="clear">&nbsp;</div>
+	</div>
+	<h5>
+	<a href="#">Closed tickets</a>
+	</h5>
+	<div class="accordion_content">
+		<%#= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@closed_tickets,:title=>"Closed Tickets", :access => "N"} %>
+		<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@closed_tickets,:title=>"", :access => "N"} %>
+		<%= link_to "View All Closed tickets", closed_tickets_department_path(@department.id)%>
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+<div class="clear">&nbsp;</div>
 
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>
