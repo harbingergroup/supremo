@@ -1,7 +1,7 @@
 Supremo::Application.routes.draw do
   resources :departments do
     member do
-      get 'users'
+      get 'users','closed_tickets','new_tickets','assigned_tickets','reopened_tickets','resolved_tickets'
     end
   end
 
@@ -25,8 +25,8 @@ Supremo::Application.routes.draw do
   match 'tickets/:ticket_id/assign(/:user_id)',:to=>'tickets#assign',:as=>'assign_ticket'
   match 'tickets/:ticket_id/reassign(/:user_id)',:to=>'tickets#reassign',:as=>'reassign_ticket'
   
-  match 'tickets/closed/:department_id',:to=>'tickets#closed',:as=>'closed_ticket'
-  match 'tickets/assigned/:department_id',:to=>'tickets#assigned',:as=>'assigned_ticket'
+  #match 'tickets/closed/:department_id',:to=>'tickets#closed',:as=>'closed_ticket'
+  #match 'tickets/assigned/:department_id',:to=>'tickets#assigned',:as=>'assigned_ticket'
 
 
 

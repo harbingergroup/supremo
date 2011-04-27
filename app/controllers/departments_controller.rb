@@ -15,11 +15,12 @@ class DepartmentsController < ApplicationController
   # GET /departments/1.xml
   def show
     @department = Department.find(params[:id])
-    @new_tickets = @department.tickets.new_tickets
-    @assigned_tickets = @department.tickets.assigned_tickets
-    @resolved_tickets = @department.tickets.resolved_tickets
-    @reopned_tickets = @department.tickets.reopened_tickets
-    @closed_tickets = @department.tickets.closed_tickets
+    limit = 5
+    @new_tickets = @department.tickets.new_tickets.recent.limit(limit)
+    @assigned_tickets = @department.tickets.assigned_tickets.recent.limit(limit)
+    @resolved_tickets = @department.tickets.resolved_tickets.recent.limit(limit)
+    @reopened_tickets = @department.tickets.reopened_tickets.recent.limit(limit)
+    @closed_tickets = @department.tickets.closed_tickets.recent.limit(limit)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -94,9 +95,38 @@ class DepartmentsController < ApplicationController
     @dept = Department.find(params[:id])
     @users = @dept.users
     respond_to do |format|
-        format.html { redirect_to(:back) }
-        format.js
-      end
+      format.html { redirect_to(:back) }
+      format.js
+    end
+  end
+
+
+
+  def closed_tickets
+    @department = Department.find(params[:id])
+    @tickets = @department.tickets.closed_tickets.recent
+    render :ticket_view
+  end
+  def new_tickets
+    @department = Department.find(params[:id])
+    @tickets = @department.tickets.new_tickets.recent
+    #@p_title  = "New Tickets"
+    render :ticket_view
+  end
+  def assigned_tickets
+    @department = Department.find(params[:id])
+    @tickets = @department.tickets.assigned_tickets.recent
+    render :ticket_view
+  end
+  def reopened_tickets
+    @department = Department.find(params[:id])
+    @tickets = @department.tickets.reopened_tickets.recent
+    render :ticket_view
+  end
+  def resolved_tickets
+    @department = Department.find(params[:id])
+    @tickets = @department.ticekts.resolved_tickets.recent
+    render :ticket_view
   end
 
 end
