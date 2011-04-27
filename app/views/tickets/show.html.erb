@@ -1,38 +1,30 @@
-
-
-<p>
-  <b>Title:</b>
-  <%= @ticket.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @ticket.description %>
-</p>
-
-<p>
-  <b>Owners:</b>
-  <%= @ticket.owner.firstname %>
-</p>
-
-<p>
-  <b>Assigned to Department:</b>
-  <%= @ticket.department.name %>
-</p>
-
-
-<p>
-  <b>Status:</b>
-  <%= @ticket.print_status %>
-</p>
-
-
-<% unless @ticket.not_assigned? %>
-<div class="assign_to_cover">
-  <b> Assigned to : </b>
-  <%= @ticket.assigned.full_name %>
-</div>
-<% end %>
+<table width="40%">
+	<tr>
+		<td colspan=2>
+			<b class="title"><%= @ticket.title %></b>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Owner: <%= @ticket.owner.firstname %></b></td>
+		<td><b>Status:</b> <%= @ticket.print_status %></td>
+	</tr>
+	<tr>
+		<td><b>Assigned to department:</b><%= @ticket.department.name %></td>
+		<% unless @ticket.not_assigned? %>
+		<td class="assign_to_cover">
+  		<b> Assigned to : </b>
+  		<%= @ticket.assigned.full_name %>
+		</td>
+		<% end %>
+	</tr>
+	<tr>
+		<td colspan="2"><b>Description:</b> </td>
+	</tr>
+	<tr>
+		<td><%= @ticket.description %></td>	
+	</tr>
+</table>	
+<hr/>
 
 <% #case current_user.id %>
 <% if (@ticket.head_of_department).id == @user_id %>
@@ -44,23 +36,19 @@
 <% if @ticket.assigned_to == @user_id%>
   <%= render :partial=>'tickets/engg_ticket_show' %>
 <% end %>
-
-
-<h3>Comments</h3>
+<hr/>
+<br/>
+<h4>Comments</h4>
 <div id="commentslist">
-
   <%=render :partial => "comment"%>
-
 </div>
 <div id="comment_form"></div>
-<div id="new_comment">
-  <h3>Add your comment</h3>
-
+<a href="#" id="comment_link"><h5>Add your comment</h5></a>
+<div id="new_comment" class="hide">
   <%=render :partial => "comment_form"%>
 </div>
 
-
-
+<hr/>
 
 <p>
   Log Trail:

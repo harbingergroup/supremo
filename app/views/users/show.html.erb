@@ -1,37 +1,19 @@
-
-
-<p>
-  <b>Firstname:</b>
-  <%= @user.firstname %>
-</p>
-
-<p>
-  <b>Lastname:</b>
-  <%= @user.lastname %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Department:</b>
-  <%= @user.department_id %>
-</p>
-
+<br/>
+<h3><%= @user.full_name %></h3>
+<p><b>Department:</b><%= @user.department_id %></p>
 <br/>
 
+<hr/>
 <!-- ************ For my depatment logic *********** -->
 <%= render "dept_and_tickets" %>
 
 <!-- For Tickets assigned to me -->
-<%#  order = {:headers => ['title','description','Owner','Assigned to dept'],
-             :methods => ['title','description','owner','department']}%>
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@mytickets,:title=>"Listing My Tickets"} %>
+<%#  order = {:headers => ['title','description','Owner','Assigned to dept'],:methods => ['title','description','owner','department']}%>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@mytickets,:title=>""} %>
+<hr/>
 <%#= render :partial=>"tickets/testtickets",:locals=>{:tickets=>@mytickets,:title=>"Tickets",:order=>order} %>
 <!-- Assigned to me -->
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets,:title=>"Listing Tickets assigned to me"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets,:title=>"Tickets assigned to me"} %>
 
 
 <div class="hidden" id="dept_users_id">

@@ -16,8 +16,11 @@ class User < ActiveRecord::Base
   has_many :mydepartments,:class_name => 'Department',:foreign_key=>:head_id,:conditions => "activated = true"
    has_associated_audits
 
-  
-
+	# For adding image to user profile
+	has_one :image
+	accepts_nested_attributes_for :image
+	
+	
 def full_name
   firstname+" "+lastname
 end

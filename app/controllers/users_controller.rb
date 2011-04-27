@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
+    @image = @user.build_image
     @depts = Department.all
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @depts = Department.all
   end
 
   # POST /users
@@ -49,7 +51,9 @@ class UsersController < ApplicationController
 
     @user = User.new(params[:user])
     @user.type = params[:user]['type'] ? params[:user]['type'] : 'Engineer'
-
+	@image = Image.new(params[:user][:image_attributes])
+    @user.image = @image
+    
     respond_to do |format|
       if @user.save
         UserMailer.registration_confirmation(@user).deliver

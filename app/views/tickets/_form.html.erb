@@ -20,19 +20,11 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%#= f.label :owners_id %><br />
-    <%#= f.text_field :owners_id %>
-  </div>
-  <div class="field">
     <%= f.label :department_id %><br />
     <%#= f.text_field :assigned_to %>
     <%=f.select("department_id", @departments.collect {|d| [ d.name, d.id ] })%>
 
     <%#= f.text_field :assigned_to %>
-  </div>
-  <div class="field">
-    <%#= f.label :status %><br />
-    <%#= f.text_field :status %>
   </div>
   <div class="actions">
     <%= f.submit %>
