@@ -9,13 +9,13 @@
 
 <% else %>
 
-  <br/>
-  <div>
-       <b>Reassign to : </b>
+
+  <span>
+    <b>Reassign to :</b>
   <%= form_tag assign_ticket_url(@ticket),:remote=>true do %>
     <%= collection_select '','user_id',@department_users,:id,:full_name %>
     <%= submit_tag "Assign" %>
   <% end %>
-  </div>
+  </span>
 
 <% end %>
