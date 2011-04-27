@@ -42,6 +42,16 @@ label {
 }
 
 
+.main_container{
+	width: 725px;
+	padding: 10px;
+	float: left;
+}
+
+.full_width{
+	width: 100%;
+}
+
 /****************** Notice & alert ********************/
 .all_notice {
     color: #FFFFFF;
@@ -94,7 +104,7 @@ table.tablesorter tbody .tcp_0 td{
 }
 
 table.tablesorter{
-	width: 120%;
+	width: 100%;
 }
 
 table.tablesorter tbody .tcp_1 td{
@@ -144,4 +154,20 @@ table.tablesorter tbody .tcp_3 td{
 .comments_table
 {
 	-moz-border-radius: 7px;
+}
+
+/**********Accordion content*******************/
+.ui-accordion .ui-accordion-content { 
+	padding: 3px;
+}
+
+#quick_links {
+	margin-right: 20px;
+}
+
+.section_header, .table_title
+{
+	color: #3189BC;
+	margin-bottom: 0;
+    margin-top: 20px;
 }

@@ -3,7 +3,7 @@ Hi <%= current_user.full_name %> |
 <%= link_to 'Home',user_path(current_user) %> |
 <%= link_to 'Departments',departments_url %> |
 <%= link_to 'Tickets',tickets_url %> |
-<%#= link_to 'Comments',comments_url %> |
+<%#= link_to 'Comments',comments_url %> 
 <%= link_to('Logout', destroy_user_session_path) %>
 
 <% else %>
