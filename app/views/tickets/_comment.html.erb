@@ -1,10 +1,23 @@
 <table border="1" class="comments_table">
 	<% @comments.each do |comment| %>
-	<tr>
-		<td><%= comment.description %></td>
+        <tr>
+          <td>
+          <div style="float:left;display:inline;width:10%">
+          <%=image_tag("/images/rails.png", :size => "30x30")%></div>
+            <div style="float:left;display:inline">
+          <%=link_to comment.user.full_name, user_path(comment.user)%> 
+
+         <%=comment.updated_at.strftime("%d %B %Y")%></div>
+            <br/>
+<div style="display:inline;float:left;">
+
+	<%= comment.description %>
+	<%=button_to "Destroy", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
+</div>
+          </td>
 	</tr>
-	<tr>
-		<td style="text-align: right">-- <%= User.find(comment.user_id).full_name%></td>
-	</tr>
+
+
+
 	<% end %>
 </table>

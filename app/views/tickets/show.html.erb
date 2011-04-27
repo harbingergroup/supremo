@@ -5,11 +5,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td><b>Owner: <%= @ticket.owner.firstname %></b></td>
-		<td><b>Status:</b> <%= @ticket.print_status %></td>
+		<td><b>Owner :</b> <%= @ticket.owner.full_name %></td>
+		<td><b>Status :</b> <%= @ticket.print_status %></td>
 	</tr>
 	<tr>
-		<td><b>Assigned to department:</b><%= @ticket.department.name %></td>
+		<td><b>Assigned to department :</b> <%= @ticket.department.name %></td>
 		<% unless @ticket.not_assigned? %>
 		<td class="assign_to_cover">
   		<b> Assigned to : </b>
@@ -18,8 +18,9 @@
 		<% end %>
 	</tr>
 	<tr>
-		<td><b>Description:</b> </td>
-	        <td><%= @ticket.description %></td>
+		<td><b>Description :</b>
+	        <%= @ticket.description %></td>
+                <td></td>
 	</tr>
 </table>	
 <hr/>
@@ -35,12 +36,13 @@
 <% end %>
 <hr/>
 <br/>
-<b>Comments</b>
+<b class="title">Comments</b>
 <div id="commentslist">
   <%=render :partial => "comment"%>
 </div>
 <div id="comment_form"></div>
-<a href="#" id="comment_link"><h5>Add your comment</h5></a>
+<%=link_to "Add your comment", "", :id => "comment_link"%>
+
 <div id="new_comment" class="hide">
   <%=render :partial => "comment_form"%>
 </div>
@@ -48,7 +50,7 @@
 <hr/>
 
 <p>
-  Log Trail:
+  <b class="title"> Log Trail:</b>
 <table>
   <% @audits.each do |a| %>
     <tr>
