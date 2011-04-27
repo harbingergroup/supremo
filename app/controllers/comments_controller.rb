@@ -37,14 +37,24 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(:description => params[:comment][:description], :ticket_id => @ticket.id)
     @comment.audit_comment = "#{current_user.firstname} added comment for Ticket - # #{@comment.ticket_id} "
     if @comment.save
-      flash[:notice] = "Successfully created comment."
-      @comments = @ticket.comments.all
+      respond_to do |format|
+        format.html {
+          @comments = @ticket.comments.all
+          flash[:notice] = "Successfully created comment."
+          redirect_to(:back) }
+        format.js{
+          @comments = @ticket.comments.all
+        }
+      end
     else
-      flash[:alert] = "Error"
-    end
-    respond_to do |format|
-      format.html { redirect_to(:back) }
-      format.js
+      respond_to do |format|
+        format.html {
+          flash[:alert] = "Error"
+          redirect_to(:back) 
+          @comments = @ticket.comments.all
+          }
+        format.js{@comments = @ticket.comments.all}
+      end
     end
   end
 
@@ -70,10 +80,11 @@ class CommentsController < ApplicationController
     @ticket = Ticket.find_by_id(params[:ticket_id])
     @comment = @ticket.comments.find(params[:id])
     @comment.destroy
-    flash[:notice] = "Successfully destroyed comment."
     @comments = @ticket.comments.all
     respond_to do |format|
-      format.html { redirect_to(:back) }
+      format.html {
+        flash[:notice] = "Successfully destroyed comment."
+        redirect_to(:back) }
       format.js
     end
   end

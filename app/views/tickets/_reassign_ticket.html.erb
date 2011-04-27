@@ -1,0 +1,10 @@
+<%= form_tag(reassign_ticket_path(ticket,assigned_to), :remote => true) do  %>
+ <div id="comment_errors" style="display: none;"></div>
+
+ <div class="field">
+    <%= text_area "",:comment, :rows => '5', :cols => '30' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Submit" , :id => "submit_comment"%>
+  </div>
+<% end %>

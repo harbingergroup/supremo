@@ -8,9 +8,9 @@ Supremo::Application.routes.draw do
   resources :tickets do
     resources :comments
     member do
-      get 'resolve'
-      get 'close'
-      get 'reopen'
+      post 'resolve'
+      post 'close'
+      post 'reopen'
     end
 
   end

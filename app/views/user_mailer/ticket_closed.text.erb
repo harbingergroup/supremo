@@ -1,0 +1,5 @@
+Hi <%=@receiver.full_name%>,
+<%=@sender.full_name%> has closed the Ticket on  <%=@ticket.updated_at.strftime("%d %B %Y")%>
+Ticket details:
+<%=@ticket.title%>
+<%=@ticket.description%>
