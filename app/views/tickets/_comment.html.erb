@@ -3,7 +3,8 @@
         <tr>
           <td>
           <div style="float:left;display:inline;width:10%">
-          <%=image_tag("/images/rails.png", :size => "30x30")%></div>
+          <%=image_tag("/images/rails.png", :size => "30x30")%>
+          <%#=image_tag(comment.user.image.photo.url(:small))%></div>
             <div style="float:left;display:inline">
           <%=link_to comment.user.full_name, user_path(comment.user)%> 
           &nbsp;&nbsp;
@@ -12,7 +13,10 @@
 <div style="display:inline;float:left;">
 
 	<%= comment.description %>
-	<%#=button_to "Destroy", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
+        &nbsp;&nbsp;
+	<%=link_to "Edit", edit_ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :remote => true%>
+        &nbsp;&nbsp;
+	<%=link_to "Delete", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
 </div>
           </td>
 	</tr>
