@@ -1,0 +1,20 @@
+<table width="40%">
+	<tr>
+		<td colspan=2>
+			<b class="title"><%= @department.name %></b>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Head :</b> <%= @department.head.full_name %></td>
+        </tr>
+        <tr>
+		<td><b>Activated :</b> <%= @department.activated %></td>
+	</tr>
+
+	
+</table>
+
+<div class="clear">&nbsp;</div>
+
+<%= link_to 'Edit', edit_department_path(@department) %> |
+<%= link_to 'Back', departments_admins_path %>
