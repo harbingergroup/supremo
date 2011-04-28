@@ -226,3 +226,29 @@ font-size: 100%;}
 .nav_profile_pic {
 vertical-align: middle;
 }
+
+/****************Menu bar*****************/
+.menu_bar{
+	float: left;
+	margin-top: 15px;	
+}
+.menu_bar li, .user_links li
+{
+	list-style: none;
+	float: left;
+	margin: 0px 5px;
+}
+
+.menu_bar li a, .user_links li a 
+{
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 110%;
+}
+
+.user_links{
+	float: right;
+	margin-top: 15px;
+}
+
+

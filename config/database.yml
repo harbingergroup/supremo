@@ -9,11 +9,11 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: sp
+  database: supremo
   pool: 5
   username: root
-  password: abhiabhi
-  host: localhost
+  password: root
+  
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,18 +22,18 @@ test:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: sp_test
+  database: supremo_test
   pool: 5
   username: root
-  password: abhiabhi
-  host: localhost
+  password: root
+  
 
 production:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: sp_production
+  database: supremo_production
   pool: 5
   username: root
-  password: abhiabhi
-  host: localhost
+  password: root
+  
