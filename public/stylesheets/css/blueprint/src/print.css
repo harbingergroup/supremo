@@ -80,7 +80,6 @@ a:link, a:visited {
 	comment out this snippet and make sure to re-compress your files.
  */
 a:link:after, a:visited:after {
-  content: " (" attr(href) ")";
   font-size: 90%;
 }
 

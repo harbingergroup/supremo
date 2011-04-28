@@ -5,11 +5,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td><b>Owner: <%= @ticket.owner.firstname %></b></td>
-		<td><b>Status:</b> <%= @ticket.print_status %></td>
+		<td><b>Owner :</b> <%= @ticket.owner.full_name %></td>
+		<td><b>Status :</b> <%= @ticket.print_status %></td>
 	</tr>
 	<tr>
-		<td><b>Assigned to department:</b><%= @ticket.department.name %></td>
+		<td><b>Assigned to department :</b> <%= @ticket.department.name %></td>
 		<% unless @ticket.not_assigned? %>
 		<td class="assign_to_cover">
   		<b> Assigned to : </b>
@@ -18,14 +18,12 @@
 		<% end %>
 	</tr>
 	<tr>
-		<td colspan="2"><b>Description:</b> </td>
-	</tr>
-	<tr>
-		<td><%= @ticket.description %></td>	
+		<td><b>Description :</b>
+	        <%= @ticket.description %></td>
+                <td></td>
 	</tr>
 </table>	
 <hr/>
-
 <% #case current_user.id %>
 <% if (@ticket.head_of_department).id == @user_id %>
   <%= render :partial=>'tickets/head_ticket_show' %>
@@ -38,12 +36,13 @@
 <% end %>
 <hr/>
 <br/>
-<h4>Comments</h4>
+<b class="title">Comments</b>
 <div id="commentslist">
   <%=render :partial => "comment"%>
 </div>
 <div id="comment_form"></div>
-<a href="#" id="comment_link"><h5>Add your comment</h5></a>
+<%=link_to "Add your comment", "", :id => "comment_link"%>
+
 <div id="new_comment" class="hide">
   <%=render :partial => "comment_form"%>
 </div>
@@ -51,7 +50,7 @@
 <hr/>
 
 <p>
-  Log Trail:
+  <b class="title"> Log Trail:</b>
 <table>
   <% @audits.each do |a| %>
     <tr>
@@ -60,7 +59,9 @@
   <%end%>
 </table>
 </p>
+<% if @ticket.owner_id == current_user.id %>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%end%>
 <%= link_to 'Back', tickets_path %>
 
 

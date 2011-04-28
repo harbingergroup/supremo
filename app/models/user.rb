@@ -25,4 +25,11 @@ def full_name
   firstname+" "+lastname
 end
 
+def is_admin?
+	if type=='Admin'
+		return true
+	else
+		return false
+	end
+end
 end

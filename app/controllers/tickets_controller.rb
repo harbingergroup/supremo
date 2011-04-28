@@ -2,6 +2,9 @@ class TicketsController < ApplicationController
   #set_tab :ticket
   # GET /tickets
   # GET /tickets.xml
+  before_filter :authorised_user_to_edit_ticket, :only => [:edit, :destroy]
+  before_filter :authorised_user_to_view_ticket, :only => [:show]
+  before_filter :required_admin, :only => [:index]
   def index
 
     @tickets = Ticket.all
