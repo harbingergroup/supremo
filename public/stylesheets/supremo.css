@@ -230,6 +230,7 @@ font-size: 100%;}
 
 .nav_profile_pic {
 vertical-align: middle;
+margin-top: -8px;
 }
 
 /****************Menu bar*****************/
@@ -241,10 +242,10 @@ vertical-align: middle;
 {
 	list-style: none;
 	float: left;
-	margin: 0px 5px;
+	margin: 0px 5px ;
 }
 
-.menu_bar li a, .user_links li a 
+.menu_bar li a, .user_links li a,.user_links li b 
 {
 	font-weight: bold;
 	text-decoration: none;
