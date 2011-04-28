@@ -42,6 +42,7 @@ class DepartmentsController < ApplicationController
   # GET /departments/1/edit
   def edit
     @department = Department.find(params[:id])
+    @users = User.where("type <> 'Admin' OR type is NULL").select(["id,firstname,lastname"])
   end
 
   # POST /departments
@@ -52,7 +53,8 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       if @department.save
         UserMailer.department_creation(current_user,@department.head,@department).deliver
-        format.html { redirect_to(@department, :notice => 'Department was successfully created.') }
+        #format.html { redirect_to(@department, :notice => 'Department was successfully created.') }
+        format.html { redirect_to(departments_admins_path, :notice => 'Department was successfully created.') }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else
         format.html { render :action => "new" }
@@ -68,7 +70,8 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:department])
-        format.html { redirect_to(@department, :notice => 'Department was successfully updated.') }
+        #format.html { redirect_to(@department, :notice => 'Department was successfully updated.') }
+        format.html { redirect_to(departments_admins_path, :notice => 'Department was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -84,7 +87,7 @@ class DepartmentsController < ApplicationController
     @department.destroy
 
     respond_to do |format|
-      format.html { redirect_to(departments_url) }
+      format.html { redirect_to(departments_admins_url) }
       format.xml  { head :ok }
     end
   end

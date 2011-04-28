@@ -20,7 +20,16 @@ Supremo::Application.routes.draw do
     root :to => "devise/sessions#new"
   end
   resources :users
-  resources :admins,:controller=>:users
+  resources :admins,:controller=>:users do
+    member do
+      get 'show_department'
+      post 'assign_role'
+    end
+    collection do
+      get 'users'
+      get 'departments'
+    end
+  end
   resources :engineers,:controller=>:users
   match 'tickets/:ticket_id/assign(/:user_id)',:to=>'tickets#assign',:as=>'assign_ticket'
   match 'tickets/:ticket_id/reassign(/:user_id)',:to=>'tickets#reassign',:as=>'reassign_ticket'

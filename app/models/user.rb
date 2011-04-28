@@ -25,4 +25,7 @@ def full_name
   firstname+" "+lastname
 end
 
+def is_admin?
+  self.class.eql?(Admin)
+end
 end

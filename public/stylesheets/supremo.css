@@ -50,6 +50,11 @@ label {
 	float: left;
 }
 
+.admin_main_container{
+	padding: 10px;
+	float: left;
+}
+
 .full_width{
 	width: 100%;
 }

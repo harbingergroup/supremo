@@ -22,7 +22,11 @@ class UsersController < ApplicationController
     @mytickets = @user.mytickets
     @tickets = @user.tickets
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+      if @user.is_admin?
+        redirect_to users_admins_path
+      end
+      }
       format.xml  { render :xml => @user }
     end
   end
@@ -57,7 +61,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.registration_confirmation(@user).deliver
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+        #format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+        format.html {
+          if current_user && current_user.is_admin?
+            redirect_to users_admins_path
+          else
+            redirect_to(@user, :notice => 'User was successfully created.')
+          end
+          }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
          @depts = Department.all
@@ -95,4 +106,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def users
+    users = User.find(:all)
+    admins = Admin.find(:all)
+    @users = users - admins
+  end
+
+  def departments
+    @departments = Department.all
+  end
+
+  def show_department
+    @department = Department.find(params[:id])
+  end
+
+  def assign_role
+    @user = User.find(params[:id])
+    @user.update_attribute('type', params[:users][:type])
+    respond_to do |format|
+      format.js  
+    end
+  end
 end
