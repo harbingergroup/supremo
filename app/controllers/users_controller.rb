@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	# GET /users
 	# GET /users.xml
+  before_filter :required_admin, :only => [:users, :departments]
+
 	include ApplicationHelper
 	def index
 		@users = User.all

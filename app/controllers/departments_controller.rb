@@ -3,7 +3,7 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.xml
   before_filter :require_admin_department_head, :only => [:edit, :destroy, :show]
-  before_filter :required_admin, :only => [:index] 
+  before_filter :required_admin, :only => [:index]
   def index
     @departments = Department.all
 
