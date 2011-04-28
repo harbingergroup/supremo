@@ -54,6 +54,21 @@ label {
 	width: 100%;
 }
 
+.user_img {
+    float: right;
+    padding: 10px;
+}
+.p50 {
+    width: 50%;
+}
+
+.center_text { text-align: center;}
+.profile_title {
+       color: #0E74AF;
+    font-size: 27px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
 /****************** Notice & alert ********************/
 .all_notice {
     color: #FFFFFF;
@@ -168,7 +183,9 @@ table.tablesorter tbody .tcp_3 td{
 #quick_links {
 	margin-right: 20px;
 }
-
+.t_accordian .ui-widget-content {
+    background: #fff;
+}
 .section_header, .table_title
 {
 	border-bottom: 1px solid;

@@ -1,5 +1,7 @@
 <% access ||= 'N' %>
+<% unless title.blank? %>
 <h5 class="table_title"><%= title %></h5>
+<% end %>
 <table class="tablesorter">
 	<thead>
 		<tr>
