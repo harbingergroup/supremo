@@ -1,40 +1,45 @@
 <% access ||= 'N' %>
+<% unless title.blank? %>
 <h5 class="table_title"><%= title %></h5>
-
-<table class="tablesorter">
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Owner</th>
-    <th>Assigned to Department</th>
-    <th>Status</th>
-    <%if access == "Y" %>
-    <th colspan="3"> Actions</th>
-    <!--<th></th>
-    <th></th> -->
-    <% end %>
-  </tr>
-  </thead>
-  <tbody
-<% tickets.each do |ticket| %>
-  <tr>
-    <td><%= link_to ticket.title,ticket_path(ticket) %></td>
-    <td><%= truncate(ticket.description,:length=>20,:omission=>'...') %></td>
-    <td><%= ticket.owner.firstname %></td>
-    <td><%= ticket.department.name %></td>
-    <td><%= ticket.print_status %></td>
-    
-    <%if access == "Y" %>
-    <td><%= link_to 'View', ticket %></td>
-      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-      <td><%= button_to('Destroy', ticket, :confirm => 'Are you sure?', :method => :delete) %></td>
-   <%end%>
-  </tr>
 <% end %>
-  </tbody>
+<table class="tablesorter">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Owner</th>
+			<th>Department</th>
+			<th>Status</th>
+			<%if access == "Y" %>
+			<th colspan="3">Actions</th>
+			<!--<th></th>
+			<th></th> -->
+			<% end %>
+		</tr>
+	</thead>
+	<tbody
+	<% tickets.each do |ticket| %>
+		<tr>
+			<td><%= link_to ticket.title,ticket_path(ticket) %></td>
+			<td><%= truncate(ticket.description,:length=>20,:omission=>'...') %></td>
+			<td><%= ticket.owner.firstname %></td>
+			<td><%= ticket.department.name %></td>
+			<td><%= ticket.print_status %></td>
+			<%if access == "Y" %>
+			<td><%= link_to 'View', ticket %></td>
+			<td><% if ticket.owner_id == current_user.id %>
+			<%= link_to 'Edit', edit_ticket_path(ticket) %>
+			<%else%>
+			&nbsp;
+			<%end%></td>
+			<td><% if ticket.owner_id == current_user.id %>
+			<%= button_to('Destroy', ticket, :confirm => 'Are you sure?', :method => :delete) %>
+			<%else%>
+			&nbsp;
+			<%end%></td>
+			<%end%>
+		</tr>
+		<% end %>
+	</tbody>
 </table>
-
-
-
 <%#= link_to 'New Ticket', new_ticket_path %>

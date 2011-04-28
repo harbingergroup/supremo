@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $(".all_notice").hide();
-    $("#notice").slideDown("slow");
+    $("#notice, #alert").slideDown("slow");
     $("#notice").setHovers();
     setTimeout(function(){
         $("#notice").hideNotice();
@@ -165,17 +165,21 @@ $(function() {
 
 $(function() {
 		$( "#tickets_accordion" ).accordion({
-			collapsible: true
+			collapsible: true			
 		});
 });
 
 /*************accordian**************/
 $(document).ready(function() {
-       $("#accordion").accordion({ active: false});
+       $("#accordion").accordion({ 
+          active: false 
+       	});
 });
 
 $(document).ready(function() {
-       $("#tickets_accordion").accordion({ active: false});
+       $("#tickets_accordion").accordion({ 
+       	active: false
+       	});
 });
 
 /************Login Page dialog*********/

@@ -2,6 +2,8 @@ class DepartmentsController < ApplicationController
   #set_tab :department
   # GET /departments
   # GET /departments.xml
+  before_filter :require_admin_department_head, :only => [:edit, :destroy, :show]
+  before_filter :required_admin, :only => [:index] 
   def index
     @departments = Department.all
 

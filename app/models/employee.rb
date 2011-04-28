@@ -1,2 +1,3 @@
 class Employee < User
+
 end

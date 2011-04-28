@@ -26,6 +26,11 @@ def full_name
 end
 
 def is_admin?
-  self.class.eql?(Admin)
+	if type=='Admin'
+		return true
+	else
+		return false
+	end
+
 end
 end

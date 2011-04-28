@@ -1,7 +1,7 @@
-<table width="40%">
+<table id="TicketInfoTable">
 	<tr>
 		<td colspan=2>
-			<b class="title"><%= @ticket.title %></b>
+			<h3 class="ticket_title"><%= @ticket.title %></h3>
 		</td>
 	</tr>
 	<tr>
@@ -18,12 +18,15 @@
 		<% end %>
 	</tr>
 	<tr>
-		<td><b>Description :</b>
+          <td colspan="2"><b>Description :</b>
 	        <%= @ticket.description %></td>
-                <td></td>
+               
 	</tr>
 </table>	
-<hr/>
+
+<h5 class="table_title">Actions</h5>
+<br/>
+
 <% #case current_user.id %>
 <% if (@ticket.head_of_department).id == @user_id %>
   <%= render :partial=>'tickets/head_ticket_show' %>
@@ -34,9 +37,10 @@
 <% if @ticket.assigned_to == @user_id%>
   <%= render :partial=>'tickets/engg_ticket_show' %>
 <% end %>
-<hr/>
+
+
+<h5 class="table_title">Comments</h5>
 <br/>
-<b class="title">Comments</b>
 <div id="commentslist">
   <%=render :partial => "comment"%>
 </div>
@@ -47,10 +51,11 @@
   <%=render :partial => "comment_form"%>
 </div>
 
-<hr/>
+<div class="clear">&nbsp;</div>
 
-<p>
-  <b class="title"> Log Trail:</b>
+<div>
+  <h5 class="table_title"> Log Trail:</h5>
+  <br/>
 <table>
   <% @audits.each do |a| %>
     <tr>
@@ -58,8 +63,10 @@
     </tr>
   <%end%>
 </table>
-</p>
+</div>
+<% if @ticket.owner_id == current_user.id %>
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%end%>
 <%= link_to 'Back', tickets_path %>
 
 
