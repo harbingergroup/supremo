@@ -2,16 +2,19 @@
 	<% @comments.each do |comment| %>
 	<tr>
 		<td>
-		<div style="float:left;display:inline;width:10%">
-			<%= image_tag(comment.user.image.photo.url(:thumb)) %>
+                  <div class="uimage_commnet">
+			<%= image_tag(get_user_image(comment.user,'thumb')) %>
 		</div>
-		<div style="float:left;display:inline">
-			<%= comment.user.full_name %>
-			&nbsp;&nbsp;
-			<%=comment.updated_at.strftime("%d %B %Y")%>
-		</div>
-		<br/>
-		<div style="display:inline;float:left;">
+
+                  <div class="commnet_ucontent">
+                    <div>
+                    <span><b><%= comment.user.full_name %></b></span>
+			&nbsp;On&nbsp;
+                        <span><%=comment.updated_at.strftime("%d %B %Y")%></span>
+                        </div>
+		
+		
+		<div>
 			<%= comment.description %>
 			&nbsp;&nbsp;
 			<% if comment.user.id == current_user.id %>
@@ -20,6 +23,7 @@
 			<%=link_to "Delete", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
 			<% end %>
 		</div>
+                </div>
 		</td>
 	</tr>
 	<% end %>

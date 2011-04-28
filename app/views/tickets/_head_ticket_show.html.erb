@@ -1,6 +1,6 @@
 <% if @ticket.not_assigned? %>
 <div class="assign_to_cover">
-  <b class="title">Assign to : </b>
+  <span><b>Assign to : </b></span>
   <%= form_tag assign_ticket_url(@ticket),:remote=>true do %>
     <%= collection_select '','user_id',@department_users,:id,:full_name %>
     <%= submit_tag "Assign" %>
@@ -10,12 +10,13 @@
 <% else %>
 
 
-  <span>
-    <b class="title">Reassign to :</b>
+  <div>
+    <span><b>Reassign to :</b></span>
   <%= form_tag assign_ticket_url(@ticket),:remote=>true do %>
     <%= collection_select '','user_id',@department_users,:id,:full_name %>
-    <%= submit_tag "Assign" %>
+    <%= submit_tag "Re-Assign" %>
   <% end %>
-  </span>
+  </div>
 
 <% end %>
+<br/>
