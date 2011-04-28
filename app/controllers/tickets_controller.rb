@@ -28,7 +28,8 @@ class TicketsController < ApplicationController
 		@ticket = Ticket.find(params[:id])
 		@comments = @ticket.comments.all
 		@audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=?",['Ticket','Comment'], @ticket.id, @ticket.id])
-		@department_users = @ticket.department.users
+		#@department_users = @ticket.department.users
+		@department_users = User.where("department_id = #{@ticket.department.id} and type='Engineer'")
 		respond_to do |format|
 			format.html # show.html.erb
 			format.xml  { render :xml => @ticket }
