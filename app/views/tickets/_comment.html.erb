@@ -1,26 +1,26 @@
 <table border="1" class="comments_table">
 	<% @comments.each do |comment| %>
-        <tr>
-          <td>
-          <div style="float:left;display:inline;width:10%">
-          <%= image_tag(comment.user.image.photo.url(:thumb)) %></div>
-            <div style="float:left;display:inline">
-             <%= comment.user.full_name %>  
-          &nbsp;&nbsp;
-         <%=comment.updated_at.strftime("%d %B %Y")%></div>
-            <br/>
-<div style="display:inline;float:left;">
-
-	<%= comment.description %>
-        &nbsp;&nbsp;
-	<%=link_to "Edit", edit_ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :remote => true%>
-        &nbsp;&nbsp;
-	<%=link_to "Delete", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
-</div>
-          </td>
+	<tr>
+		<td>
+		<div style="float:left;display:inline;width:10%">
+			<%= image_tag(comment.user.image.photo.url(:thumb)) %>
+		</div>
+		<div style="float:left;display:inline">
+			<%= comment.user.full_name %>
+			&nbsp;&nbsp;
+			<%=comment.updated_at.strftime("%d %B %Y")%>
+		</div>
+		<br/>
+		<div style="display:inline;float:left;">
+			<%= comment.description %>
+			&nbsp;&nbsp;
+			<% if comment.user.id == current_user.id %>
+			<%=link_to "Edit", edit_ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :remote => true%>
+			&nbsp;&nbsp;
+			<%=link_to "Delete", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
+			<% end %>
+		</div>
+		</td>
 	</tr>
-
-
-
 	<% end %>
 </table>
