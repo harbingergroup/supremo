@@ -15,4 +15,8 @@ module ApplicationHelper
     end
   end
 
+  def is_head_of_any_dept?(user)
+    Department.find_by_head_id(user.id) ? true : false
+  end
+
 end

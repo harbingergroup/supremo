@@ -45,7 +45,7 @@ label {
 
 
 .main_container{
-	width: 725px;
+	width: 718px;
 	padding: 10px;
 	float: left;
 }
@@ -57,6 +57,7 @@ label {
 
 .full_width{
 	width: 100%;
+        overflow: hidden;
 }
 
 .user_img {
@@ -64,7 +65,7 @@ label {
     padding: 10px;
 }
 .p50 {
-    width: 50%;
+    width: 79%;
 }
 
 .center_text { text-align: center;}
@@ -73,6 +74,21 @@ label {
     font-size: 27px;
     font-weight: bold;
     text-transform: capitalize;
+}
+
+a,a:visited {
+    color: #0093D0;
+    text-decoration: none;
+  /*  text-shadow: 1px 1px 2px #6DAAC4;*/
+  }
+a:hover {
+    text-decoration: underline;
+    text-shadow: 0px 0px 1px #6DAAC4;
+}
+
+.MoreLinks li {
+    padding: 2px;
+    list-style-type: circle;
 }
 /****************** Notice & alert ********************/
 .all_notice {
@@ -177,7 +193,10 @@ table.tablesorter tbody .tcp_3 td{
 {
 	-moz-border-radius: 7px;
 }
-
+.comments_table tr td {
+    background: #edeff4 !important;
+    border-bottom: 1px solid #fff;
+}
 .uimage_commnet {
      float: left;
     margin-right: 10px;

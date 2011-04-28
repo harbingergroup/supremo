@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
     @sender = sender
     @receiver = receiver
     @ticket = ticket
-    mail(:from => sender.email, :to => receiver.email, :subject => "New Ticket Opened")
+    mail(:from => 'abhishek.patel@harbingergroup.com', :to => 'abhishek.patel131@gmail.com', :subject => "New Ticket Opened")
   end
 
   def ticket_assigned(sender,receiver,ticket)

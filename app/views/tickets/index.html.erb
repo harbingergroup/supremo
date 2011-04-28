@@ -32,7 +32,17 @@
 
 <br />
 <%else%>
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets_created,:title=>"Created Tickets", :access => "Y"} %>
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets_assigned,:title=>"Assigned Tickets", :access => "N"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets_created,:title=>"My Tickets", :access => "Y"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@tickets_assigned,:title=>"Tickets assigned to me", :access => "N"} %>
+
+<h5 class="table_title">More...</h5>
+<div class="clear">&nbsp;</div>
+<ul class="MoreLinks">
+<li><%= link_to 'View All New Tickets',mytickets_path('0') %></li>
+<li><%= link_to 'View All Assigned Tickets',mytickets_path('1') %></li>
+<li><%= link_to 'View All Resolved Tickets',mytickets_path('2') %></li>
+<li><%= link_to 'View All Reopened Tickets',mytickets_path('3') %></li>
+<li><%= link_to 'View All Completed Tickets',mytickets_path('4') %></li>
+</ul>
 <%end%>
-<%= link_to 'New Ticket', new_ticket_path %>
+<%= link_to 'Open a New Ticket', new_ticket_path %>

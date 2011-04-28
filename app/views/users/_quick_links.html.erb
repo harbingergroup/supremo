@@ -3,7 +3,7 @@
 </h4>
 <div id="accordion" class="my_class">
 
-	<% unless @mydepts.empty? %>
+	<% if is_head_of_any_dept?(current_user) %>
 	<h3>
 	<a href="#">Department</a>
 	</h3>
@@ -39,11 +39,15 @@
 	</h3>
 	<div class="accordion_content">
 		<ul>
+
+                        <li>
+				<%= link_to 'Home', user_path(current_user) %>
+			</li>
 			<li>
 				<%= link_to 'Edit profile', edit_user_path(current_user) %>
 			</li>
 			<li>
-				<%= link_to 'Change password', '#' %>
+				<%= link_to 'Change password', edit_user_password_url(current_user, :reset_password_token => current_user.reset_password_token) %>
 			</li>
 			<li>
 				<%= link_to 'Logout', logout_url %>
