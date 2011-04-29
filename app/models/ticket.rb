@@ -16,13 +16,15 @@ class Ticket < ActiveRecord::Base
   scope :closed_tickets,where("status = 4")
 
   #has_associated_audits
-  TSTATUS = ['open','assigned','resolved','reopened','closed']
+  TSTATUS = ['New','assigned','resolved','reopened','closed']
+  # for printing purpose only
+  THSTATUS = ['New','assigned','resolved','reopened','closed']
   def assign_to_user(user_id)
     update_attribute(:assigned_to,user_id)
   end
 
   def assign_to_engineer(user_id)
-    update_attributes({:assigned_to=>user_id,:original_assigned_to=>user_id})
+    update_attributes({:assigned_to=>user_id,:original_assigned_to=>user_id,:status=>1})
   end
   def change_status_to(s)
      update_attribute(:status,s)

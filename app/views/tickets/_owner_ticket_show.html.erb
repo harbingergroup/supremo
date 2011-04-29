@@ -1,6 +1,6 @@
 
 <% unless @ticket.closed? %>
- <%= link_to 'Close Ticket',"", :id => "close_ticket_link" %>
+ <%= link_to 'Close This Ticket',"", :id => "close_ticket_link" %>
 <% if @ticket.is_resolved? %>
    | <%= link_to 'Reopen Ticket',"", :id => "reopen_ticket_link" %>
 <% elsif @ticket.assigned_to == current_user.id %>

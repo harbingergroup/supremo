@@ -1,4 +1,17 @@
 class UserMailer < ActionMailer::Base
+
+
+=begin
+User Registration - user
+new ticket opened - from owner to head
+ticket assigned - from head to the engineer and owner
+ticket resolved - from engineer to the owner
+ticket closed - from head to the owner, owner to engineer
+ticket reopen - from owner to the engineer
+=end
+
+
+
   default :from => "admin@supremo.com"
   def registration_confirmation(user)
     @user = user

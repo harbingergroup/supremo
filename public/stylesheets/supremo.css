@@ -80,7 +80,7 @@ label {
     text-transform: capitalize;
 }
 
-a,a:visited {
+a,a:visited,.ui-widget-content a  {
     color: #0093D0;
     text-decoration: none;
   /*  text-shadow: 1px 1px 2px #6DAAC4;*/
@@ -241,8 +241,12 @@ table.tablesorter tbody .tcp_3 td{
 }
 .section_header, .table_title
 {
-	border-bottom: 1px solid;
-    color: #3189BC;
+    /*border-bottom: 2px solid;
+    padding-bottom: 2px;
+    color: #3189BC; */
+    background: #3189BC;
+    color: #fff;
+    padding : 4px;
     font-size: 17px;
     font-weight: normal;
     margin-bottom: 0;
