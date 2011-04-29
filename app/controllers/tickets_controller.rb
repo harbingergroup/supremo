@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
 
 		@ticket = Ticket.find(params[:id])
 		@comments = @ticket.comments.all
-		@audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=?",['Ticket','Comment'], @ticket.id, @ticket.id])
+		@audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=? and action !=?",['Ticket','Comment'], @ticket.id, @ticket.id,'destroy'])
 		@department_users = @ticket.department.users
 		respond_to do |format|
 			format.html # show.html.erb
@@ -102,7 +102,8 @@ class TicketsController < ApplicationController
 	def assign
 		#   raise 'here '
 		@ticket = Ticket.find(params[:ticket_id])
-		@ticket.audit_comment = " #{current_user.full_name} assigned ticket"
+    user = User.find(params[:user_id])
+		@ticket.audit_comment = " #{current_user.full_name} assigned ticket to #{user.full_name}"
     @ticket.assign_to_engineer(params[:user_id])
 		@user = @ticket.assigned
 		if @ticket.save
