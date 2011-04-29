@@ -161,5 +161,22 @@ $.fx.speeds._default = 1100;
 		});
 });
 
+/***************Image Upload dialog****************/
+$.fx.speeds._default = 1100;
+	$(function() {
+		$( "#upload_profile_pic" ).dialog({
+			autoOpen: false,
+			show: "slide",
+			modal: true,
+			title: "Upload Profile Picture",
+			hide: "clip",
+			//width: 428,
+			//height: 375
+			
+		});
 
-
+		$( "#upload_image_link" ).click(function() {
+			$( "#upload_profile_pic" ).dialog("open");
+			return false;
+		});
+});

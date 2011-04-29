@@ -36,6 +36,13 @@ Supremo::Application.routes.draw do
       get 'departments'
     end
   end
+
+	resources :users do
+		member do
+			get :upload_image
+			post :save_uploaded_image
+		end
+	end
   resources :employees,:controller=>:users
   resources :engineers,:controller=>:users
 
