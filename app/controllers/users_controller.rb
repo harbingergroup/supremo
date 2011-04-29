@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	# GET /users
 	# GET /users.xml
+	before_filter :require_user
 	before_filter :required_admin, :only => [:users, :departments]
 
 	include ApplicationHelper
