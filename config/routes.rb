@@ -19,8 +19,13 @@ Supremo::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
     root :to => "devise/sessions#new"
   end
-  resources :users
-
+  
+  resources :users do
+	member do
+  		get 'mydepartments'
+  	end
+  end
+ 
   resources :admins,:controller=>:users do
     member do
       get 'show_department'

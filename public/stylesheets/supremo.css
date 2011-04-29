@@ -253,6 +253,10 @@ table.tablesorter tbody .tcp_3 td{
     margin-top: 20px;
 }
 
+.section_header a
+{
+	color: white;
+}
 .ui-helper-reset {
 font-size: 100%;}
 
@@ -285,4 +289,15 @@ margin-top: -8px;
 	margin-top: 15px;
 }
 
+
+/*****************My departments page********************/
+.dept_tickets
+{
+	-moz-border-radius: 8px;
+	border: 1px solid;
+	border-color: #E2DFCF;
+	margin-bottom: 20px;
+	padding: 5px;
+	width: 350px;
+}
 
