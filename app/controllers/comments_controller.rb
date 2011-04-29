@@ -80,7 +80,6 @@ class CommentsController < ApplicationController
     @ticket = Ticket.find_by_id(params[:ticket_id])
     @comment = @ticket.comments.find(params[:id])
     @comment.destroy
-    @comments = @ticket.comments.all
     respond_to do |format|
       format.html {
         flash[:notice] = "Successfully destroyed comment."

@@ -1,30 +1,27 @@
-<table border="1" class="comments_table">
-	<% @comments.each do |comment| %>
-	<tr>
-		<td>
-                  <div class="uimage_commnet">
-			<%= image_tag(get_user_image(comment.user,'thumb')) %>
-		</div>
 
-                  <div class="commnet_ucontent">
-                    <div>
-                    <span><b><%= comment.user.full_name %></b></span>
-			&nbsp;On&nbsp;
-                        <span><%=comment.updated_at.strftime("%d %B %Y at %H:%M")%></span>
-                        </div>
-		
-		
-		<div>
-			<%= comment.description %>
-			&nbsp;&nbsp;
-			<% if comment.user.id == current_user.id %>
-			<%=link_to "Edit", edit_ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :remote => true%>
-			&nbsp;&nbsp;
-			<%=link_to "Delete", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true%>
-			<% end %>
-		</div>
-                </div>
-		</td>
-	</tr>
-	<% end %>
-</table>
+<tr id="comment_<%=comment.id%>">
+  <td>
+    <div class="uimage_commnet">
+      <%= image_tag(get_user_image(comment.user,'thumb')) %>
+    </div>
+
+    <div class="commnet_ucontent">
+      <div>
+        <span><b><%= comment.user.full_name %></b></span>
+        &nbsp;On&nbsp;
+        <span><%=comment.updated_at.strftime("%d %B %Y at %H:%M")%></span>
+      </div>
+
+
+      <div class="myclass">
+        <%= comment.description %>
+        &nbsp;&nbsp;
+        <% if comment.user.id == current_user.id %>
+          <%=link_to "Edit", edit_ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :remote => true%>
+          &nbsp;&nbsp;
+          <%=link_to "Delete", ticket_comment_path(:ticket_id =>@ticket.id,:id => comment.id), :method => :delete, :confirm => "Are you sure?", :remote => true, :id => "comment_#{@ticket.id}"%>
+        <% end %>
+      </div>
+    </div>
+  </td>
+</tr>

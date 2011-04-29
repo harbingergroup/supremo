@@ -194,8 +194,11 @@ class TicketsController < ApplicationController
 		add_comment(@ticket,params[:comment],t_log, c_log)
     @ticket.close_ticket
 		if @ticket.save && @comment.save
-			UserMailer.ticket_closed(current_user,@ticket.owner,@ticket).deliver
-			UserMailer.ticket_closed(current_user,@ticket.assigned,@ticket).deliver
+      if @ticket.original_assigned_to
+        receiver = Uaser.find(@ticket.original_assigned_to)
+			  UserMailer.ticket_closed(current_user,@ticket.owner,@ticket).deliver
+        UserMailer.ticket_closed(current_user,receiver,@ticket).deliver
+      end
 			respond_to do |format|
 				format.html {
 					flash[:notice] = 'Ticket closed'

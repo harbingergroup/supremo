@@ -1,3 +1,3 @@
 $("#commentslist").html("<%= escape_javascript( render(:partial => "tickets/comment", :locals => {:ticket => @ticket}) ) %>");
 set_notice("Ticket is been closed");
-$("#close_ticket_form").dialog('destroy');
+$("#ticket_comment_form").dialog('destroy');
