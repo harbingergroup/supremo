@@ -102,9 +102,9 @@ class TicketsController < ApplicationController
 	def assign
 		#   raise 'here '
 		@ticket = Ticket.find(params[:ticket_id])
-		@ticket.assign_to_engineer(params[:user_id])
+		@ticket.audit_comment = " #{current_user.full_name} assigned ticket"
+    @ticket.assign_to_engineer(params[:user_id])
 		@user = @ticket.assigned
-		@ticket.audit_comment = " #{current_user.full_name} assigned ticket to #{@user.full_name}"
 		if @ticket.save
 			UserMailer.ticket_assigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
@@ -132,10 +132,11 @@ class TicketsController < ApplicationController
 	def reassign
 		#  raise 'here'
 		@ticket = Ticket.find(params[:ticket_id])
+		t_log = "#{current_user.firstname} reassigned Ticket - # #{@ticket.id} "
+		c_log = "#{current_user.firstname} added comment on # #{@ticket.id} "
+		add_comment(@ticket,params[:comment],t_log,c_log)
 		@ticket.assign_to_user(params[:user_id])
-		log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
-		add_comment(@ticket,params[:comment],log)
-		if @ticket.save && @comment.save
+    if @ticket.save && @comment.save
 			UserMailer.ticket_reassigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
 				format.html {
@@ -159,12 +160,13 @@ class TicketsController < ApplicationController
 	def resolve
 		#  raise 'here'
 		@ticket = Ticket.find(params[:id])
-		@ticket.resolve_ticket
 		#@ticket = Ticket.find_by_id(params[:ticket_id])
 		@comment = current_user.comments.new(:description => params[:comment], :ticket_id => @ticket.id)
-		log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
-		add_comment(@ticket,params[:comment],log)
-		if @ticket.save && @comment.save
+		t_log = "#{current_user.firstname} resolved  Ticket - # #{@ticket.id} "
+    c_log = "#{current_user.firstname} added comment on # #{@ticket.id} "
+		add_comment(@ticket,params[:comment],t_log,c_log)
+		@ticket.resolve_ticket
+    if @ticket.save && @comment.save
 			UserMailer.ticket_resolved(@ticket.department.head,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
 				format.html {
@@ -185,11 +187,12 @@ class TicketsController < ApplicationController
 	def close
 		#  raise 'here'
 		@ticket = Ticket.find(params[:id])
-		@ticket.close_ticket
-		log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
-		add_comment(@ticket,params[:comment],log)
+		t_log = "#{current_user.firstname} closed the ticket - # #{@ticket.id} "
+    c_log = "#{current_user.firstname} added comment on # #{@ticket.id} "
+		add_comment(@ticket,params[:comment],t_log, c_log)
+    @ticket.close_ticket
 		if @ticket.save && @comment.save
-			UserMailer.ticket_closed(@ticket.department.head,@ticket.assigned,@ticket).deliver
+			UserMailer.ticket_closed(@ticket.department.head,@ticket.department.head,@ticket).deliver
 			respond_to do |format|
 				format.html {
 					flash[:notice] = 'Ticket closed'
@@ -208,9 +211,10 @@ class TicketsController < ApplicationController
 	def reopen
 		#  raise 'here'
 		@ticket = Ticket.find(params[:id])
-		@ticket.reopen_ticket
-		log = "#{current_user.firstname} added comment for Ticket - # #{@ticket.id} "
-		add_comment(@ticket,params[:comment],log)
+		_log = "#{current_user.firstname} reopned the Ticket - # #{@ticket.id} "
+    c_log = "#{current_user.firstname} added comment on # #{@ticket.id} "
+		add_comment(@ticket,params[:comment],t_log,c_log)
+    @ticket.reopen_ticket
 		if @ticket.save && @comment.save
 			UserMailer.ticket_reopen(@ticket.department.head,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
@@ -228,9 +232,10 @@ class TicketsController < ApplicationController
 		end
 	end
 
-	def add_comment(ticket,comment,log)
+	def add_comment(ticket,comment,t_log,c_log)
 		@comment = current_user.comments.new(:description => comment, :ticket_id => ticket.id)
-		@comment.audit_comment = log
+		@comment.audit_comment = c_log
+		ticket.audit_comment = t_log
 	end
 
 	def closed
