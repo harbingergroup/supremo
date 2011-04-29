@@ -2,19 +2,6 @@
 <b>Quick links</b>
 </h4>
 <div id="accordion" class="my_class">
-
-	<% if is_head_of_any_dept?(current_user) %>
-	<h3>
-	<a href="#">Department</a>
-	</h3>
-	<div class="accordion_content">
-		<ul>
-			<li>
-				<%= link_to 'My Departments', '#'%>
-			</li>
-		</ul>
-	</div>
-	<%end%>
 	<h3>
 	<a href="#">Ticket</a>
 	</h3>
@@ -37,6 +24,18 @@
 			</li>
 		</ul>
 	</div>
+	<% if is_head_of_any_dept?(current_user) %>
+	<h3>
+	<a href="#">Department</a>
+	</h3>
+	<div class="accordion_content">
+		<ul>
+			<li>
+				<%= link_to 'My Departments', mydepartments_user_url%>
+			</li>
+		</ul>
+	</div>
+	<%end%>
 	<h3>
 	<a href="#">Profile</a>
 	</h3>

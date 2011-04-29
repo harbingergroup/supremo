@@ -1,5 +1,6 @@
 Supremo::Application.routes.draw do
 
+
 	resources :departments do
 		member do
 			get 'users','closed_tickets','new_tickets','assigned_tickets','reopened_tickets','resolved_tickets'
