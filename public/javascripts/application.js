@@ -183,7 +183,7 @@ $(document).ready(function() {
 });
 
 /************Login Page dialog*********/
-$.fx.speeds._default = 1100;
+/*$.fx.speeds._default = 1100;
 	$(function() {
 		$( "#dialog" ).dialog({
 			autoOpen: false,
@@ -198,7 +198,7 @@ $.fx.speeds._default = 1100;
 			$( "#dialog" ).dialog("open");
 			return false;
 		});
-});
+});*/
 
 /***************Comments dialog****************/
 $.fx.speeds._default = 1100;

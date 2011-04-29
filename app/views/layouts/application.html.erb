@@ -57,11 +57,15 @@
 				</div>
 				<%end%>
 				<%if current_user && current_user.is_admin?%>
-                                  <%class_name = "admin_main_container"%>
-                                <%else%>
-                                  <%class_name = "main_container"%>
-                                <%end%>
-				<div class="<%=class_name%> last">
+					<% class_name = "admin_main_container"%>
+				<%else%>
+					<% if current_user%>
+						<% class_name = "main_container"%>
+					<%else%>
+						<% class_name = "login_container"%>
+					<%end%>
+				<%end%>
+				<div class="<%= class_name%> last">
 					<!--middle column (right) -->
 					<div class="clear">
 					</div>

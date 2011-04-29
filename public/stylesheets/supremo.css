@@ -115,25 +115,6 @@ table.tablesorter tbody tr.hover td{
 	background-color: #E6DEEE;
 }
 
-/************************** Login page **********************/
-.in_div label {
-    display: inline-block;
-    font-weight: bold;
-    text-align: left;
-    width: 77px;
-}
-
-.ou_div {
-  background: none repeat scroll 0 0 #E6EEEE;
-    border: 1px solid #CACECE;
-    border-radius: 18px 18px 18px 18px;
-    margin: 12%;
-    padding: 3% 0;
-    width: 510px;
-}
-.in_div{}
-.in_div .remember_me_text{width : auto;}
-
 /******************* Tickets Table **************************/
 table.tablesorter tbody .tcp_0 td{
  	background: none repeat scroll 0 0 #F2FAFF;
@@ -175,19 +156,38 @@ table.tablesorter tbody .tcp_3 td{
     width: 110px;
 }
 
+.in_div .title{
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 15px;
+    width: 110px;
+}
+
 .ou_div {
-  	/*background: none repeat scroll 0 0 #E6EEEE;*/
+  	background: none repeat scroll 0 0 #E6EEEE;*/
     border: 1px solid #CACECE;
     -moz-border-radius: 18px 18px 18px 18px;
     border-radius: 18px 18px 18px 18px;
-    /*margin: 12%;
+    margin-top: 12%;
     padding: 3% 0;
-    width: 510px;*/
+    width: 450px;
     
 }
 .in_div{}
 .in_div .remember_me_text{width : auto;}
 
+.login_container{
+	width: 100%;
+	padding: 10px;
+}
+
+.login_page_links
+{
+	text-align: left;
+	margin-left: 194px;
+}
 /****************Comments table*************/
 .comments_table
 {
