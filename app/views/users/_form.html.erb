@@ -44,7 +44,8 @@
 </div>
 <div class="field">
 	<%= f.fields_for(:image) do |b| %>
-	<%= b.label :photo , "Profile picture "%>
+	<%= b.label :photo , "Profile picture"%>
+	<br/>
 	<%= b.file_field :photo %>
 	<%end%>
 </div>
