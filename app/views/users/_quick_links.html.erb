@@ -21,16 +21,19 @@
 	<div class="accordion_content">
 		<ul>
 			<li>
-				<%= link_to 'My tickets', '#'%>
+				<%= link_to 'My tickets', tickets_path%>
 			</li>
 			<li>
-				<%= link_to 'Open tickets', '#' %>
+				<%= link_to 'Open tickets', mytickets_path('1') %>
 			</li>
 			<li>
-				<%= link_to 'Closed tickets', '#' %>
+				<%= link_to 'Completed tickets', mytickets_path('4') %>
+			</li>
+                        <li>
+				<%= link_to 'Resolved tickets', mytickets_path('2') %>
 			</li>
 			<li>
-				<%= link_to 'Open a new ticket', '#' %>
+				<%= link_to 'Open a new ticket', new_ticket_path %>
 			</li>
 		</ul>
 	</div>

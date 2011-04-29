@@ -22,9 +22,9 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".all_notice").hide();
     $("#notice, #alert").slideDown("slow");
-    $("#notice").setHovers();
+    $("#notice,#alert").setHovers();
     setTimeout(function(){
-        $("#notice").hideNotice();
+        $("#notice,#alert").hideNotice();
     },3000);
 })
 
