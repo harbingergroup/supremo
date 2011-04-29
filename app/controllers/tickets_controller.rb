@@ -107,7 +107,8 @@ class TicketsController < ApplicationController
     @ticket.assign_to_engineer(params[:user_id])
 		@user = @ticket.assigned
 		if @ticket.save
-			UserMailer.ticket_assigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
+			UserMailer.ticket_assigned(current_user,@ticket.assigned,@ticket).deliver
+			UserMailer.ticket_assigned(current_user,@ticket.owner,@ticket).deliver
 			respond_to do |format|
 				format.html {
 					flash[:notice] = 'Succesfully updated the ticket'
@@ -138,7 +139,7 @@ class TicketsController < ApplicationController
 		add_comment(@ticket,params[:comment],t_log,c_log)
 		@ticket.assign_to_user(params[:user_id])
     if @ticket.save && @comment.save
-			UserMailer.ticket_reassigned(@ticket.department.head,@ticket.assigned,@ticket).deliver
+			UserMailer.ticket_reassigned(current_user,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
 				format.html {
 					@comments = @ticket.comments.all
@@ -168,7 +169,7 @@ class TicketsController < ApplicationController
 		add_comment(@ticket,params[:comment],t_log,c_log)
 		@ticket.resolve_ticket
     if @ticket.save && @comment.save
-			UserMailer.ticket_resolved(@ticket.department.head,@ticket.assigned,@ticket).deliver
+			UserMailer.ticket_resolved(current_user,@ticket.owner,@ticket).deliver
 			respond_to do |format|
 				format.html {
 					@comments = @ticket.comments.all
@@ -193,7 +194,8 @@ class TicketsController < ApplicationController
 		add_comment(@ticket,params[:comment],t_log, c_log)
     @ticket.close_ticket
 		if @ticket.save && @comment.save
-			UserMailer.ticket_closed(@ticket.department.head,@ticket.department.head,@ticket).deliver
+			UserMailer.ticket_closed(current_user,@ticket.owner,@ticket).deliver
+			UserMailer.ticket_closed(current_user,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
 				format.html {
 					flash[:notice] = 'Ticket closed'
@@ -212,12 +214,12 @@ class TicketsController < ApplicationController
 	def reopen
 		#  raise 'here'
 		@ticket = Ticket.find(params[:id])
-		_log = "#{current_user.firstname} reopned the Ticket - # #{@ticket.id} "
+		t_log = "#{current_user.firstname} reopned the Ticket - # #{@ticket.id} "
     c_log = "#{current_user.firstname} added comment on # #{@ticket.id} "
 		add_comment(@ticket,params[:comment],t_log,c_log)
     @ticket.reopen_ticket
 		if @ticket.save && @comment.save
-			UserMailer.ticket_reopen(@ticket.department.head,@ticket.assigned,@ticket).deliver
+			UserMailer.ticket_reopen(current_user,@ticket.assigned,@ticket).deliver
 			respond_to do |format|
 				format.html {
 					flash[:notice] = 'Ticket reopened'
