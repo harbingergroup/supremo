@@ -1,4 +1,4 @@
-<%= form_tag(reassign_ticket_path(ticket,assigned_to), :remote => true) do  %>
+<%= form_tag(reopen_ticket_path(@ticket), :remote => true, :class => "tc_form") do  %>
  <div id="comment_errors" style="display: none;"></div>
 
  <div class="field">
