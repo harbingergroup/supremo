@@ -10,10 +10,10 @@
   </ul>
 </div>
 </div>
-<h5 class="section_header">Tickets to Assign</h5>
+<h5 class="section_header"><%= @ticketsta.size %> New Tickets to be Assigned</h5>
 <div class="clear">&nbsp;</div>
 <div class="tickts_to_assign">
-  <ul>
+  <ol>
   <%- @ticketsta.each do |t| %>
     <li id="ta_<%= t.id %>">
       <div>
@@ -27,7 +27,7 @@
       <div> &nbsp; </div>
     </li>
   <%- end %>
-  </ul>
+  </ol>
 </div>
 
 <% end %>

@@ -139,4 +139,10 @@ class UsersController < ApplicationController
       format.js  
     end
   end
+
+  def ticket_status
+    @user = current_user
+    @tickets = @user.tickets.where("status = #{params[:status]}")
+    render :template=>"tickets/_mytickets",:locals=>{:tickets=>@tickets,:title=>(Ticket::TSTATUS[params[:status].to_i]+' Tickets').capitalize,:access=>"N"}
+  end
 end

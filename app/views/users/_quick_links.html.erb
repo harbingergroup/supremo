@@ -3,11 +3,7 @@
 </h4>
 <div id="accordion" class="my_class">
 
-	<h3>
-		<a href="#">Home</a>
-	</h3>
-	<div class="accordion_content">
-	</div>
+	<% if is_head_of_any_dept?(current_user) %>
 	<h3>
 	<a href="#">Department</a>
 	</h3>
@@ -18,6 +14,7 @@
 			</li>
 		</ul>
 	</div>
+	<%end%>
 	<h3>
 	<a href="#">Ticket</a>
 	</h3>
@@ -27,7 +24,10 @@
 				<%= link_to 'My tickets', '#'%>
 			</li>
 			<li>
-				<%= link_to 'My recent tickets', '#' %>
+				<%= link_to 'Open tickets', '#' %>
+			</li>
+			<li>
+				<%= link_to 'Closed tickets', '#' %>
 			</li>
 			<li>
 				<%= link_to 'Open a new ticket', '#' %>
@@ -39,8 +39,15 @@
 	</h3>
 	<div class="accordion_content">
 		<ul>
+
+                        <li>
+				<%= link_to 'Home', user_path(current_user) %>
+			</li>
 			<li>
 				<%= link_to 'Edit profile', edit_user_path(current_user) %>
+			</li>
+			<li>
+				<%= link_to 'Change password', edit_user_password_url(current_user, :reset_password_token => current_user.reset_password_token) %>
 			</li>
 			<li>
 				<%= link_to 'Logout', logout_url %>
