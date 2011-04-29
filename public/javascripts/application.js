@@ -152,18 +152,20 @@ $(document).ready(function() {
 /***************Comments dialog****************/
 $.fx.speeds._default = 1100;
 	$(function() {
+
+            $( "#comment_link" ).click(function() {
 		$( "#new_comment" ).dialog({
 			autoOpen: false,
 			show: "slide",
 			modal: true,
 			title: "Add your comment",
-			hide: "clip",
+			
 			width: 428,
 			height: 375
 			
 		});
 
-		$( "#comment_link" ).click(function() {
+		
 			$( "#new_comment" ).dialog("open");
 			return false;
 		});
