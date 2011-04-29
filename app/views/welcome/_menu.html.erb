@@ -31,20 +31,30 @@ Hi <%= current_user.full_name %> |
 </div>
 <div id="user_links" class="user_links">
 	<ul>
-		<li><%= image_tag current_user.image.photo.url(:thumb), :class=>"nav_profile_pic"%></li>
+		<li>
+		<%= image_tag get_user_image(current_user,'thumb'), :class=>"nav_profile_pic"%>
+		</li>
 		<li>
 			<b>Hi <%= current_user.full_name %></b>
 		</li>
 		<li>
 			<%= link_to('Logout', destroy_user_session_path) %>
 		</li>
-		<% else %>
+	</ul>
+</div>
+<% else %>
+
+<div id="user_links" class="user_links">
+	<ul>
+		<li>
+			<b>You are not logged in.&nbsp;&nbsp;</b>
+		</li>
 		<li>
 			<%= link_to('Login', new_user_session_path, :id=>'login_link')  %>
 		</li>
-		<% end %>
 	</ul>
 </div>
+<% end %>
 
 
 

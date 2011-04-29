@@ -27,6 +27,8 @@
 	<br />
 	<%= f.text_field :email %>
 </div>
+
+<% if @user.new_record? %>
 <div class="field">
 	<%= f.label :password %>
 	<br />
@@ -37,6 +39,7 @@
 	<br />
 	<%= f.password_field :password_confirmation %>
 </div>
+<% end %>
 <div class="field">
 	<%= f.label :department_id %>
 	<br />
@@ -44,7 +47,8 @@
 </div>
 <div class="field">
 	<%= f.fields_for(:image) do |b| %>
-	<%= b.label :photo , "Profile picture "%>
+	<%= b.label :photo , "Profile picture"%>
+	<br/>
 	<%= b.file_field :photo %>
 	<%end%>
 </div>

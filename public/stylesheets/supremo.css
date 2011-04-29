@@ -9,6 +9,10 @@ html body {
 /*text-shadow: 0px 0px 3px #fff;*/
 }
 
+input[type="file"]
+{
+	-moz-border-radius: 10px
+}
 input[type="submit"]{
     -moz-border-radius: 10px;
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -22,7 +26,7 @@ input[type="submit"]{
 input[type="submit"]:hover{
 	background-color: #214C5F; 
 }
-input[type="email"]:focus, INPUT[type="text"]:focus, textarea:focus, INPUT[type="password"]:focus, select:focus {
+input[type="file"]:focus, input[type="email"]:focus, INPUT[type="text"]:focus, textarea:focus, INPUT[type="password"]:focus, select:focus {
 
 	border : 1px solid #828177;
 }
@@ -45,7 +49,7 @@ label {
 
 
 .main_container{
-	width: 725px;
+	width: 718px;
 	padding: 10px;
 	float: left;
 }
@@ -57,6 +61,7 @@ label {
 
 .full_width{
 	width: 100%;
+        overflow: hidden;
 }
 
 .user_img {
@@ -64,7 +69,7 @@ label {
     padding: 10px;
 }
 .p50 {
-    width: 50%;
+    width: 79%;
 }
 
 .center_text { text-align: center;}
@@ -74,6 +79,22 @@ label {
     font-weight: bold;
     text-transform: capitalize;
 }
+
+a,a:visited,.ui-widget-content a  {
+    color: #0093D0;
+    text-decoration: none;
+  /*  text-shadow: 1px 1px 2px #6DAAC4;*/
+  }
+a:hover {
+    text-decoration: underline;
+    text-shadow: 0px 0px 1px #6DAAC4;
+}
+
+.MoreLinks li {
+    padding: 2px;
+    list-style-type: circle;
+}
+
 /****************** Notice & alert ********************/
 .all_notice {
     color: #FFFFFF;
@@ -98,25 +119,6 @@ label {
 table.tablesorter tbody tr.hover td{
 	background-color: #E6DEEE;
 }
-
-/************************** Login page **********************/
-.in_div label {
-    display: inline-block;
-    font-weight: bold;
-    text-align: left;
-    width: 77px;
-}
-
-.ou_div {
-  background: none repeat scroll 0 0 #E6EEEE;
-    border: 1px solid #CACECE;
-    border-radius: 18px 18px 18px 18px;
-    margin: 12%;
-    padding: 3% 0;
-    width: 510px;
-}
-.in_div{}
-.in_div .remember_me_text{width : auto;}
 
 /******************* Tickets Table **************************/
 table.tablesorter tbody .tcp_0 td{
@@ -159,25 +161,47 @@ table.tablesorter tbody .tcp_3 td{
     width: 110px;
 }
 
+.in_div .title{
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 15px;
+    width: 110px;
+}
+
 .ou_div {
-  	/*background: none repeat scroll 0 0 #E6EEEE;*/
+  	background: none repeat scroll 0 0 #E6EEEE;*/
     border: 1px solid #CACECE;
     -moz-border-radius: 18px 18px 18px 18px;
     border-radius: 18px 18px 18px 18px;
-    /*margin: 12%;
+    margin-top: 12%;
     padding: 3% 0;
-    width: 510px;*/
+    width: 450px;
     
 }
 .in_div{}
 .in_div .remember_me_text{width : auto;}
 
+.login_container{
+	width: 100%;
+	padding: 10px;
+}
+
+.login_page_links
+{
+	text-align: left;
+	margin-left: 194px;
+}
 /****************Comments table*************/
 .comments_table
 {
 	-moz-border-radius: 7px;
 }
-
+.comments_table tr td {
+    background: #edeff4 !important;
+    border-bottom: 1px solid #fff;
+}
 .uimage_commnet {
      float: left;
     margin-right: 10px;
@@ -217,8 +241,12 @@ table.tablesorter tbody .tcp_3 td{
 }
 .section_header, .table_title
 {
-	border-bottom: 1px solid;
-    color: #3189BC;
+    /*border-bottom: 2px solid;
+    padding-bottom: 2px;
+    color: #3189BC; */
+    background: #3189BC;
+    color: #fff;
+    padding : 4px;
     font-size: 17px;
     font-weight: normal;
     margin-bottom: 0;
@@ -230,6 +258,7 @@ font-size: 100%;}
 
 .nav_profile_pic {
 vertical-align: middle;
+margin-top: -8px;
 }
 
 /****************Menu bar*****************/
@@ -241,10 +270,10 @@ vertical-align: middle;
 {
 	list-style: none;
 	float: left;
-	margin: 0px 5px;
+	margin: 0px 5px ;
 }
 
-.menu_bar li a, .user_links li a 
+.menu_bar li a, .user_links li a,.user_links li b 
 {
 	font-weight: bold;
 	text-decoration: none;

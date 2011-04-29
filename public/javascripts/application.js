@@ -3,7 +3,7 @@
 
 
 $(document).ready(function(){
-    $( "#resolve_ticket_form" ).dialog({
+    $( "#ticket_comment_form" ).dialog({
         autoOpen: false,
         title: "Comment",
         height: 370,
@@ -11,60 +11,9 @@ $(document).ready(function(){
         modal: true
 
     });
-    $('#resolve_ticket_link').live("click",function() {
-        $( "#resolve_ticket_form" ).dialog('open');
-        return false;
-    });
-})
-
-$(document).ready(function(){
-    $( "#reassign_ticket_form" ).dialog({
-        autoOpen: false,
-        title: "Comment",
-        height: 370,
-        width: 430,
-        modal: true
-    });
-    $('#reassign_to_owner_link').live("click",function() {
-        $( "#reassign_ticket_form" ).dialog('open');
-        return false;
-    });
-})
-
-$(document).ready(function(){
-    $( "#close_ticket_form" ).dialog({
-        autoOpen: false,
-        title: "Comment",
-        height: 370,
-        width: 430,
-        modal: true
-    });
-    $('#close_ticket_link').live("click",function() {
-        $( "#close_ticket_form" ).dialog('open');
-        return false;
-    });
-})
-
-$(document).ready(function(){
-    $( "#reopen_ticket_form" ).dialog({
-        autoOpen: false,
-        title: "Comment",
-        height: 370,
-        width: 430,
-        modal: true
-    });
-    $('#reopen_ticket_link').live("click",function() {
-        $( "#reopen_ticket_form" ).dialog('open');
-        return false;
-    });
-})
-
-$(document).ready(function(){
-    $( "#reassign_ticket_to_someone_form" ).dialog({
-        autoOpen: false
-    });
-    $('#reassign_to_someone_link').live("click",function() {
-        $( "#reassign_ticket_to_someone_form" ).dialog('open');
+    $('.ticket_action').live("click",function() {
+        $(".tc_form").attr('action',$(this).attr('href'));
+        $( "#ticket_comment_form" ).dialog('open');
         return false;
     });
 })
@@ -73,9 +22,9 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".all_notice").hide();
     $("#notice, #alert").slideDown("slow");
-    $("#notice").setHovers();
+    $("#notice,#alert").setHovers();
     setTimeout(function(){
-        $("#notice").hideNotice();
+        $("#notice,#alert").hideNotice();
     },3000);
 })
 
@@ -183,7 +132,7 @@ $(document).ready(function() {
 });
 
 /************Login Page dialog*********/
-$.fx.speeds._default = 1100;
+/*$.fx.speeds._default = 1100;
 	$(function() {
 		$( "#dialog" ).dialog({
 			autoOpen: false,
@@ -198,23 +147,25 @@ $.fx.speeds._default = 1100;
 			$( "#dialog" ).dialog("open");
 			return false;
 		});
-});
+});*/
 
 /***************Comments dialog****************/
 $.fx.speeds._default = 1100;
 	$(function() {
+
+            $( "#comment_link" ).click(function() {
 		$( "#new_comment" ).dialog({
 			autoOpen: false,
 			show: "slide",
 			modal: true,
 			title: "Add your comment",
-			hide: "clip",
+			
 			width: 428,
 			height: 375
 			
 		});
 
-		$( "#comment_link" ).click(function() {
+		
 			$( "#new_comment" ).dialog("open");
 			return false;
 		});

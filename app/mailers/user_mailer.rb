@@ -1,4 +1,17 @@
 class UserMailer < ActionMailer::Base
+
+
+=begin
+User Registration - user
+new ticket opened - from owner to head
+ticket assigned - from head to the engineer and owner
+ticket resolved - from engineer to the owner
+ticket closed - from head to the owner, owner to engineer
+ticket reopen - from owner to the engineer
+=end
+
+
+
   default :from => "admin@supremo.com"
   def registration_confirmation(user)
     @user = user
@@ -9,7 +22,7 @@ class UserMailer < ActionMailer::Base
     @sender = sender
     @receiver = receiver
     @ticket = ticket
-    mail(:from => sender.email, :to => receiver.email, :subject => "New Ticket Opened")
+    mail(:from => 'abhishek.patel@harbingergroup.com', :to => 'abhishek.patel131@gmail.com', :subject => "New Ticket Opened")
   end
 
   def ticket_assigned(sender,receiver,ticket)

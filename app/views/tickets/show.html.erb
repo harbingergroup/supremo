@@ -5,7 +5,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td><b>Owner :</b> <%= @ticket.owner.full_name %></td>
+		<td><b>Reporter:</b> <%= @ticket.owner.full_name %></td>
 		<td><b>Status :</b> <%= @ticket.print_status %></td>
 	</tr>
 	<tr>
@@ -17,8 +17,20 @@
 		</td>
 		<% end %>
 	</tr>
+
+        <tr>
+		<td><b>Created at :</b> <%= @ticket.created_at.strftime("%d %B %Y at %H:%M") %></td>
+		
+		<td>
+  		<b>Updated at : </b>
+  		<%= @ticket.updated_at.strftime("%d %B %Y at %H:%M") %>
+		</td>
+		
+	</tr>
 	<tr>
-          <td colspan="2"><b>Description :</b>
+          <td colspan="2"><b>Description :</b> </td>
+        </tr>  <tr>
+          <td colspan="2">
 	        <%= @ticket.description %></td>
                
 	</tr>
@@ -42,10 +54,14 @@
 <h5 class="table_title">Comments</h5>
 <br/>
 <div id="commentslist">
-  <%=render :partial => "comment"%>
+<table border="1" class="comments_table">
+ <% @comments.each do |comment| %>
+   <%=render :partial => "comment", :locals => {:comment => comment}%>
+ <% end %>
+ </table>
 </div>
 <div id="comment_form"></div>
-<%=link_to "Add your comment", "", :id => "comment_link"%>
+<%=link_to "Add your comment", "#", :id => "comment_link"%>
 
 <div id="new_comment" class="hide">
   <%=render :partial => "comment_form"%>
@@ -72,27 +88,7 @@
 
 
 
-
-
-
-
-<div id="resolve_ticket_form" style="display:none">
-  <%=render :partial => "resolve_ticket"%>
-</div>
-
-<div id="reassign_ticket_form" style="display:none">
-  <%=render :partial => "reassign_ticket", :locals => {:ticket=> @ticket,:assigned_to => @ticket.owner_id}%>
-</div>
-
-<div id="reassign_ticket_to_someone_form" style="display:none">
-  <%=render :partial => "reassign_ticket", :locals => {:ticket => @ticket,:assigned_to => @ticket.original_assigned_to }%>
-</div>
-
-<div id="close_ticket_form" style="display:none">
-  <%=render :partial => "close_ticket_form"%>
-</div>
-
-<div id="reopen_ticket_form" style="display:none">
-  <%=render :partial => "reopen_ticket_form"%>
+<div id="ticket_comment_form" style="display:none">
+  <%=render :partial => "ticket_comment_form"%>
 </div>
 
