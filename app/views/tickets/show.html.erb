@@ -54,10 +54,14 @@
 <h5 class="table_title">Comments</h5>
 <br/>
 <div id="commentslist">
-  <%=render :partial => "comment"%>
+<table border="1" class="comments_table">
+ <% @comments.each do |comment| %>
+   <%=render :partial => "comment", :locals => {:comment => comment}%>
+ <% end %>
+ </table>
 </div>
 <div id="comment_form"></div>
-<%=link_to "Add your comment", "", :id => "comment_link"%>
+<%=link_to "Add your comment", "#", :id => "comment_link"%>
 
 <div id="new_comment" class="hide">
   <%=render :partial => "comment_form"%>
