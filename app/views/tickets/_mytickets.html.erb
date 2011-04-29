@@ -2,6 +2,7 @@
 <% unless title.blank? %>
 <h5 class="table_title"><%= title %></h5>
 <% end %>
+<% unless tickets.empty?%>
 <table class="tablesorter">
 	<thead>
 		<tr>
@@ -39,7 +40,12 @@
 			<%end%></td>
 			<%end%>
 		</tr>
-		<% end %>
+	<% end %>
 	</tbody>
 </table>
+<%else%>
+	<b class="status"></h6>No tickets.</h6>
+		<br/><br/>
+<%end%>
+
 <%#= link_to 'New Ticket', new_ticket_path %>
