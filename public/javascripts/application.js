@@ -108,13 +108,15 @@ function set_alert(notice){
 
 $(function() {
 		$( "#accordion" ).accordion({
-			collapsible: true
+			collapsible: true,
+			autoHeight: false
 		});
 });
 
 $(function() {
 		$( "#tickets_accordion" ).accordion({
-			collapsible: true			
+			collapsible: true,
+			autoHeight: false			
 		});
 });
 
@@ -158,3 +160,6 @@ $.fx.speeds._default = 1100;
 			return false;
 		});
 });
+
+
+
