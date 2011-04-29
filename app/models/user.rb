@@ -31,5 +31,6 @@ def is_admin?
 	else
 		return false
 	end
+
 end
 end

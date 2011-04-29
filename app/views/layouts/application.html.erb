@@ -30,11 +30,11 @@
 		</div>
 		<div class="container">
 			<!--container begins (remove showgrid)-->
-			<%= image_tag("header.jpg") %>
+			<%= image_tag("Supremo.png") %>
 			<div class="span-24">
 				<!--Banner -->				
-				<div style="float: right">
-					<h4 class="large"><%= render :partial=>'welcome/menu'%></h4>
+				<div>
+					<%= render :partial=>'welcome/menu'%>
 				</div>
 				<br/>
 				<br/>
@@ -46,7 +46,7 @@
 					<!--middle column (upper) -->
 				</p>
 				
-				<%if(current_user)%>
+				<%if(current_user) && !current_user.is_admin?%>
 				<div id="quick_links" class="span-5">
 					&nbsp;
 					
@@ -55,8 +55,12 @@
 					
 				</div>
 				<%end%>
-				
-				<div class="main_container last">
+				<%if current_user && current_user.is_admin?%>
+                                  <%class_name = "admin_main_container"%>
+                                <%else%>
+                                  <%class_name = "main_container"%>
+                                <%end%>
+				<div class="<%=class_name%> last">
 					<!--middle column (right) -->
 					<div class="clear">
 					</div>

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	# GET /users
 	# GET /users.xml
+  before_filter :required_admin, :only => [:users, :departments]
+
 	include ApplicationHelper
 	def index
 		@users = User.all
@@ -11,21 +13,27 @@ class UsersController < ApplicationController
 		end
 	end
 
-	# GET /users/1
-	# GET /users/1.xml
-	def show
-		@user = User.find(params[:id])
-		@mydepts = @user.mydepartments
-		unless @mydepts.empty?
-			@ticketsta = tickets_to_assign(@mydepts)
-		end
-		@mytickets = @user.mytickets
-		@tickets = @user.tickets
-		respond_to do |format|
-			format.html # show.html.erb
-			format.xml  { render :xml => @user }
-		end
-	end
+
+  # GET /users/1
+  # GET /users/1.xml
+  def show
+    @user = User.find(params[:id])
+    @mydepts = @user.mydepartments
+    unless @mydepts.empty?
+      @ticketsta = tickets_to_assign(@mydepts)
+    end
+    @mytickets = @user.mytickets
+    @tickets = @user.tickets
+    respond_to do |format|
+      format.html {
+      if @user.is_admin?
+        redirect_to users_admins_path
+      end
+      }
+      format.xml  { render :xml => @user }
+    end
+  end
+
 
 	# GET /users/new
 	# GET /users/new.xml
@@ -48,17 +56,23 @@ class UsersController < ApplicationController
 	# POST /users
 	# POST /users.xml
 	def create
-
-		@user = User.new(params[:user])
+  	@user = User.new(params[:user])
 		#@user.type = params[:user]['type'] ? params[:user]['type'] : 'Employee'
 		@user.type = 'Employee'
 		@image = Image.new(params[:user][:image_attributes])
 		@user.image = @image
 
+
 		respond_to do |format|
 			if @user.save
 				UserMailer.registration_confirmation(@user).deliver
-				format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+				format.html {
+          if current_user && current_user.is_admin?
+            redirect_to users_admins_path
+          else
+            redirect_to(@user, :notice => 'User was successfully created.')
+          end
+          }
 				format.xml  { render :xml => @user, :status => :created, :location => @user }
 			else
 				@depts = Department.all
@@ -104,4 +118,25 @@ class UsersController < ApplicationController
 		end
 	end
 
+  def users
+    users = User.find(:all)
+    admins = Admin.find(:all)
+    @users = users - admins
+  end
+
+  def departments
+    @departments = Department.all
+  end
+
+  def show_department
+    @department = Department.find(params[:id])
+  end
+
+  def assign_role
+    @user = User.find(params[:id])
+    @user.update_attribute('type', params[:users][:type])
+    respond_to do |format|
+      format.js  
+    end
+  end
 end

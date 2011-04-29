@@ -1,14 +1,29 @@
 <br/>
-<%= image_tag @user.image.photo.url(:small)%>
-<h3><%= @user.full_name %></h3>
-<p><b>Department: </b><%= link_to @user.department.name, department_url(@user.department_id) %></p>
 
+<!-- For user image -->
+<div class="user_img">
+	<%= image_tag get_user_image(@user,:small)%>
+	<div class="center_text">
+		<% if @user.image %>
+		<%= link_to ('Change Picture', "", :id=>"upload_image_link") %>
+		<% else %>
+		<%= link_to ('Upload Picture', "", :id=>"upload_image_link") %>
+
+		<% end %>
+	</div>
+</div>
+<h3 class="profile_title"><%= @user.full_name %></h3>
+<p>
+	<b>Department:</b><%= link_to @user.department.name, department_url(@user.department_id) %>
+</p>
 <!-- ************ For my depatment logic *********** -->
 <%= render "dept_and_tickets" %>
-<br/>
+<div id="upload_profile_pic" class="hide">
+	<%= render :partial=>"upload_image"%>
+</div>
 <!-- For Tickets assigned to me -->
 <%#  order = {:headers => ['title','description','Owner','Assigned to dept'],:methods => ['title','description','owner','department']}%>
-<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@mytickets,:title=>"Tickets to assign"} %>
+<%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@mytickets,:title=>"My Tickets"} %>
 <br/>
 <%#= render :partial=>"tickets/testtickets",:locals=>{:tickets=>@mytickets,:title=>"Tickets",:order=>order} %>
 <!-- Assigned to me -->

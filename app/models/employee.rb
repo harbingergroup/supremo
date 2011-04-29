@@ -1,3 +1,3 @@
 class Employee < User
-	
+
 end

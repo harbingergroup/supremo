@@ -50,10 +50,30 @@ label {
 	float: left;
 }
 
+.admin_main_container{
+	padding: 10px;
+	float: left;
+}
+
 .full_width{
 	width: 100%;
 }
 
+.user_img {
+    float: right;
+    padding: 10px;
+}
+.p50 {
+    width: 50%;
+}
+
+.center_text { text-align: center;}
+.profile_title {
+       color: #0E74AF;
+    font-size: 27px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
 /****************** Notice & alert ********************/
 .all_notice {
     color: #FFFFFF;
@@ -158,6 +178,30 @@ table.tablesorter tbody .tcp_3 td{
 	-moz-border-radius: 7px;
 }
 
+.uimage_commnet {
+     float: left;
+    margin-right: 10px;
+}
+
+.uimage_commnet img{
+     border: 1px outset white;
+    padding: 2px;
+}
+.commnet_ucontent {
+    line-height: 19px;
+    overflow: hidden;
+}
+
+.ticket_title {
+     color: #0E74AF;
+    font-size: 22px;
+    font-weight: bold;
+   
+}
+
+#TicketInfoTable tr td {
+    background: none;
+}
 /**********Accordion content*******************/
 #quick_links .ui-accordion .ui-accordion-content { 
 	padding: 10px 0 0 25px;
@@ -168,7 +212,9 @@ table.tablesorter tbody .tcp_3 td{
 #quick_links {
 	margin-right: 20px;
 }
-
+.t_accordian .ui-widget-content {
+    background: #fff;
+}
 .section_header, .table_title
 {
 	border-bottom: 1px solid;
@@ -185,3 +231,29 @@ font-size: 100%;}
 .nav_profile_pic {
 vertical-align: middle;
 }
+
+/****************Menu bar*****************/
+.menu_bar{
+	float: left;
+	margin-top: 15px;	
+}
+.menu_bar li, .user_links li
+{
+	list-style: none;
+	float: left;
+	margin: 0px 5px;
+}
+
+.menu_bar li a, .user_links li a 
+{
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 110%;
+}
+
+.user_links{
+	float: right;
+	margin-top: 15px;
+}
+
+

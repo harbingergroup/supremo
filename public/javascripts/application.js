@@ -165,17 +165,21 @@ $(function() {
 
 $(function() {
 		$( "#tickets_accordion" ).accordion({
-			collapsible: true
+			collapsible: true			
 		});
 });
 
 /*************accordian**************/
 $(document).ready(function() {
-       $("#accordion").accordion({ active: false});
+       $("#accordion").accordion({ 
+          active: false 
+       	});
 });
 
 $(document).ready(function() {
-       $("#tickets_accordion").accordion({ active: false});
+       $("#tickets_accordion").accordion({ 
+       	active: false
+       	});
 });
 
 /************Login Page dialog*********/
@@ -212,6 +216,26 @@ $.fx.speeds._default = 1100;
 
 		$( "#comment_link" ).click(function() {
 			$( "#new_comment" ).dialog("open");
+			return false;
+		});
+});
+
+/***************Image Upload dialog****************/
+$.fx.speeds._default = 1100;
+	$(function() {
+		$( "#upload_profile_pic" ).dialog({
+			autoOpen: false,
+			show: "slide",
+			modal: true,
+			title: "Upload Profile Picture",
+			hide: "clip",
+			//width: 428,
+			//height: 375
+			
+		});
+
+		$( "#upload_image_link" ).click(function() {
+			$( "#upload_profile_pic" ).dialog("open");
 			return false;
 		});
 });

@@ -1,0 +1,2 @@
+$("#users_type_<%=@user.id%>").html("<%= escape_javascript( render(:partial => "users/type", :locals => {:user => @user}) ) %>");
+set_notice("Role is been assigned to user");
