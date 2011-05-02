@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	# GET /users
 	# GET /users.xml
+	before_filter :require_user
 	before_filter :required_admin, :only => [:users, :departments]
 
 	include ApplicationHelper
@@ -101,6 +102,45 @@ class UsersController < ApplicationController
 				format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
 			end
 		end
+	end
+	
+	def save_uploaded_image
+		#raise 'here'
+		@user = User.find(params[:id])
+		if @user.type != nil
+			@image = Image.new(params[@user.type.to_s.downcase][:image_attributes])
+		end
+		image_backup = @user.image
+		if @image.save
+			@user.image = @image
+			respond_to do |format|
+		
+				if @user.update_attributes(params[:user])
+					format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+					format.xml  { head :ok }
+				else
+					format.html { render :template => "users/_upload_image" }
+					format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+
+				end
+		
+			end
+		else
+			
+			@user.errors.add(:image,"Image photo content type is not one of image/jpeg, image/png ");
+			respond_to do |format|
+					format.html { render :template => "users/_upload_image" }
+					format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+
+			
+		end
+		end
+	end
+
+	def upload_image
+		@user = User.find(params[:id])
+		@user_image_invalid = true
+		render "users/_upload_image"
 	end
 
 	# DELETE /users/1
