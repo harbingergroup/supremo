@@ -116,7 +116,9 @@ $(function() {
 $(function() {
 		$( "#tickets_accordion" ).accordion({
 			collapsible: true,
-			autoHeight: false			
+			autoHeight: false,
+			active: params[:fsdfds]
+						
 		});
 });
 
@@ -149,7 +151,6 @@ $.fx.speeds._default = 1100;
 			show: "slide",
 			modal: true,
 			title: "Add your comment",
-			
 			width: 428,
 			height: 375
 			
