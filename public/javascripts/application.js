@@ -116,9 +116,7 @@ $(function() {
 $(function() {
 		$( "#tickets_accordion" ).accordion({
 			collapsible: true,
-			autoHeight: false,
-			active: params[:fsdfds]
-						
+			autoHeight: false				
 		});
 });
 
