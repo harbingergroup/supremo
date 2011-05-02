@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 			@ticketsta = tickets_to_assign(@mydepts)
 		end
 		@mytickets = @user.mytickets
-		@tickets = @user.tickets
+		@tickets = @user.tickets.recent.where("status <> 4")
 		respond_to do |format|
 			format.html {
 				if @user.is_admin?
@@ -179,14 +179,35 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def ticket_status
-		@user = current_user
-		@tickets = @user.mytickets.where("status = #{params[:status]}")
-		render :template=>"tickets/_mytickets",:locals=>{:tickets=>@tickets,:title=>(Ticket::TSTATUS[params[:status].to_i]+' Tickets').capitalize,:access=>"N"}
-	end
-
 	def mydepartments
 		@departments = current_user.mydepartments
 	end
+
+   def ticket_status
+    @user = current_user
+    st = params[:status].to_i
+    @tickets = @user.mytickets.where("status = #{st}")
+    #if st==0
+    # @tickets.merge(@user.mytickets.where("status = 1"))
+    #end
+    render :template=>"tickets/_mytickets",:locals=>{:tickets=>@tickets,:title=>(Ticket::THSTATUS[st]+' Tickets').capitalize,:access=>"N"}
+  end
+
+  def update_current_password
+    @user = current_user
+    type = @user.type.downcase
+    if @user.valid_password?(params[type]['current_password'])
+      if @user.reset_password!(params[type]['password'],params[type]['password_confirmation'])
+        flash[:notice] = "Successfully updated password"
+        redirect_to user_url(@user)
+      else
+        flash[:alert] = "Passsword does not match confirmation"
+        redirect_to change_password_user_url(@user)
+      end
+    else
+        flash[:alert] = "Incorrect current password"
+        redirect_to change_password_user_url(@user)
+    end
+  end
 
 end

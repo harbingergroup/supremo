@@ -9,6 +9,9 @@ html body {
 /*text-shadow: 0px 0px 3px #fff;*/
 }
 
+input[type="text"], input[type="password"], input.text, input.title, textarea, select {
+    padding: 5px;
+}
 input[type="file"]
 {
 	-moz-border-radius: 10px
@@ -34,6 +37,7 @@ input[type="email"]:focus,INPUT[type="text"]:focus, textarea:focus, INPUT[type="
 border:1px solid #0B73A5;
 box-shadow : 0 0 4px #0B73A5; /*0 0 4px #BCCDD1*/
 -moz-box-shadow : 0 0 4px #0B73A5;
+
 }
 
 .float_right { float:right;}
@@ -42,7 +46,9 @@ box-shadow : 0 0 4px #0B73A5; /*0 0 4px #BCCDD1*/
 label {
     font-weight: bold;
 }
-
+.pad12 {
+    padding-top: 10px;
+}
 .green {
     color:green;
 }
@@ -171,7 +177,7 @@ table.tablesorter tbody .tcp_3 td{
 }
 
 .ou_div {
-  	background: none repeat scroll 0 0 #E6EEEE;*/
+  	background: none repeat scroll 0 0 #E6EEEE;
     border: 1px solid #CACECE;
     -moz-border-radius: 18px 18px 18px 18px;
     border-radius: 18px 18px 18px 18px;
@@ -245,6 +251,7 @@ table.tablesorter tbody .tcp_3 td{
     padding-bottom: 2px;
     color: #3189BC; */
     background: #3189BC;
+  /*  background: -moz-linear-gradient(50% 46% 48deg,#3189BC, #FFFFFF, #FFFFFF 100%);*/
     color: #fff;
     padding : 4px;
     font-size: 17px;

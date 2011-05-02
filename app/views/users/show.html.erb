@@ -5,9 +5,9 @@
 	<%= image_tag get_user_image(@user,:small)%>
 	<div class="center_text">
 		<% if @user.image %>
-		<%= link_to ('Change Picture', "", :id=>"upload_image_link") %>
+		<%= link_to 'Change Picture', "#", :id=>"upload_image_link" %>
 		<% else %>
-		<%= link_to ('Upload Picture', "", :id=>"upload_image_link") %>
+		<%= link_to 'Upload Picture', "#", :id=>"upload_image_link" %>
 
 		<% end %>
 	</div>
@@ -18,10 +18,12 @@
 </p>
 <!-- ************ For my depatment logic *********** -->
 <%= render "dept_and_tickets" %>
+
 <div id="upload_profile_pic" class="hide">
 	<%= render :partial=>"upload_image"%>
 </div>
-<!-- For Tickets assigned to me -->
+<!-- For Tickets created by me -->
+
 <%#  order = {:headers => ['title','description','Owner','Assigned to dept'],:methods => ['title','description','owner','department']}%>
 <%= render :partial=>"tickets/mytickets",:locals=>{:tickets=>@mytickets,:title=>"My Tickets"} %>
 <br/>
