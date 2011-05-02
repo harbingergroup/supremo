@@ -2,20 +2,20 @@
 <html>
 	<head>
 		<title>Supremo *</title>
-                <%= stylesheet_link_tag "css/blueprint/screen.css", :media=>"screen, projection" %>
+		<%= stylesheet_link_tag "css/blueprint/screen.css", :media=>"screen, projection" %>
 		<%= stylesheet_link_tag "css/blueprint/print.css", :media=>"print" %>
-		
+
 		<%= stylesheet_link_tag 'jquery-ui-1.8.12.custom','scaffold','style.css','supremo.css' %>
 		<%= javascript_include_tag 'jquery','rails','jquery.tablesorter.min','jquery-ui-1.8.12.custom.min','application' %>
 
 		<%#= javascript_include_tag :defaults %>
-		
 
 		<%= csrf_meta_tag %>
 	</head>
-	<body class=<%= controller.action_name%> >
+	<body class=<%= controller.action_name%>
+		>
 
-  <%- if notice %>
+		<%- if notice %>
 		<div id="notice" class="hidden all_notice">
 			<%= notice %>
 		</div>
@@ -33,7 +33,7 @@
 			<!--container begins (remove showgrid)-->
 			<%= image_tag("Supremo.png") %>
 			<div class="span-24">
-				<!--Banner -->				
+				<!--Banner -->
 				<div>
 					<%= render :partial=>'welcome/menu'%>
 				</div>
@@ -41,29 +41,25 @@
 				<br/>
 				<br/>
 			</div>
-			
 			<div class="full_width">
 				<p>
 					<!--middle column (upper) -->
 				</p>
-				
 				<%if(current_user) && !current_user.is_admin?%>
 				<div id="quick_links" class="span-5">
 					&nbsp;
-					
 					<!--middle column (left) -->
-						<%= render :partial=>"users/quick_links"%>
-					
+					<%= render :partial=>"users/quick_links"%>
 				</div>
 				<%end%>
 				<%if current_user && current_user.is_admin?%>
-					<% class_name = "admin_main_container"%>
+				<% class_name = "admin_main_container"%>
 				<%else%>
-					<% if current_user%>
-						<% class_name = "main_container"%>
-					<%else%>
-						<% class_name = "login_container"%>
-					<%end%>
+				<% if current_user%>
+				<% class_name = "main_container"%>
+				<%else%>
+				<% class_name = "login_container"%>
+				<%end%>
 				<%end%>
 				<div class="<%= class_name%> last">
 					<!--middle column (right) -->
@@ -74,7 +70,7 @@
 					</div>
 				</div>
 			</div>
-		    <div class="span-4">
+			<div class="span-4">
 				<!--footer content goes here -->
 			</div>
 		</div><!--container ends-->
