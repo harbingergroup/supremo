@@ -40,7 +40,7 @@ Supremo::Application.routes.draw do
 	resources :users do
 		member do
 			get :upload_image
-			post :save_uploaded_image
+			put :save_uploaded_image
 		end
 	end
   resources :employees,:controller=>:users

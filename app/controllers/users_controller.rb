@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	# GET /users
 	# GET /users.xml
-	before_filter :require_user
+	before_filter :require_user, :except => [:new, :create]
 	before_filter :required_admin, :only => [:users, :departments]
 
 	include ApplicationHelper
@@ -138,6 +138,8 @@ class UsersController < ApplicationController
 	end
 
 	def upload_image
+		raise 'upload image'
+		#@depts = Department.all
 		@user = User.find(params[:id])
 		@user_image_invalid = true
 		render "users/_upload_image"

@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
 	belongs_to :user
 	
-	has_attached_file :photo, :styles => { :thumb=> "40x40#", :small  => "150x150>", :medium => "300x300>", :large =>   "400x400>" },
+	has_attached_file :photo, :styles => { :thumb=> "40x40#", :small  => "100x100"},
                   :url  => "/assets_path/users/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets_path/users/:id/:style/:basename.:extension"
 					#:path => "d:/assets_path/users/:id/:style/:basename.:extension"
