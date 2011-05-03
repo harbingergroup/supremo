@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	# GET /users
 	# GET /users.xml
+   #include Devise::Controllers::InternalHelpers
 	before_filter :require_user, :except => [:new, :create]
 	before_filter :required_admin, :only => [:users, :departments]
 
@@ -198,15 +199,16 @@ class UsersController < ApplicationController
     type = @user.type.downcase
     if @user.valid_password?(params[type]['current_password'])
       if @user.reset_password!(params[type]['password'],params[type]['password_confirmation'])
+        sign_in @user, :bypass => true
         flash[:notice] = "Successfully updated password"
-        redirect_to user_url(@user)
+        redirect_to user_url(current_user)
       else
         flash[:alert] = "Passsword does not match confirmation"
-        redirect_to change_password_user_url(@user)
+        render :change_password
       end
     else
         flash[:alert] = "Incorrect current password"
-        redirect_to change_password_user_url(@user)
+        render :change_password
     end
   end
 
