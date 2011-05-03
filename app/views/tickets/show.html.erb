@@ -56,6 +56,7 @@
 <br/>
 <div id="commentslist">
 <table border="1" class="comments_table">
+  <tr></tr>
  <% @comments.each do |comment| %>
    <%=render :partial => "comment", :locals => {:comment => comment}%>
  <% end %>
