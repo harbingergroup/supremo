@@ -35,7 +35,7 @@
                
 	</tr>
 </table>	
-
+<% unless @ticket.closed? %>
 <h5 class="table_title">Actions</h5>
 <br/>
 
@@ -50,6 +50,7 @@
   <%= render :partial=>'tickets/engg_ticket_show' %>
 <% end %>
 
+<% end %>
 
 <h5 class="table_title">Comments</h5>
 <br/>

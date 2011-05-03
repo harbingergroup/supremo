@@ -12,9 +12,11 @@
 		<li>
 			<%= link_to 'Home',user_path(current_user) %>
 		</li>
+               <% if is_head_of_any_dept?(current_user) %>
 		<li>
 			<%= link_to 'Departments',departments_url %>
 		</li>
+                <% end %>
 		<li>
 			<%= link_to 'Tickets',tickets_url %>
 		</li>

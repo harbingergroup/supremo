@@ -10,6 +10,9 @@
 			<li>
 				<%= link_to 'My tickets', tickets_path%>
 			</li>
+                        <li>
+				<%= link_to 'New tickets', mytickets_path('0'),:title=>"Recently created tickets which are not assigned to anyone yet." %>
+			</li>
 			<li>
 				<%= link_to 'Open tickets', mytickets_path('1') %>
 			</li>
@@ -18,6 +21,9 @@
 			</li>
                         <li>
 				<%= link_to 'Resolved tickets', mytickets_path('2') %>
+			</li>
+                        <li>
+				<%= link_to 'Completed tickets', mytickets_path('4') %>
 			</li>
 			<li>
 				<%= link_to 'Open a new ticket', new_ticket_path %>
@@ -48,11 +54,17 @@
 				<%= link_to 'Edit profile', edit_user_path(current_user) %>
 			</li>
 			<li>
-				<%= link_to 'Change password', edit_user_password_url(current_user, :reset_password_token => current_user.reset_password_token) %>
+				<%= link_to 'Change password', change_password_user_url(current_user) %>
 			</li>
 			<li>
 				<%= link_to 'Logout', logout_url %>
 			</li>
 		</ul>
 	</div>
+</div>
+
+<div class="pad12">
+  <ul>
+    <li><%= link_to 'Open a new ticket', new_ticket_path %></li>
+  </ul>
 </div>
