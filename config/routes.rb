@@ -19,13 +19,18 @@ Supremo::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
     root :to => "devise/sessions#new"
   end
-  
+
   resources :users do
-	member do
-  		get 'mydepartments'
-  	end
+    member do
+     	get 'mydepartments'
+      get 'change_password'
+      put 'update_current_password'
+     	get :upload_image
+			put :save_uploaded_image
+    end
   end
- 
+
+
   resources :admins,:controller=>:users do
     member do
       get 'show_department'
@@ -37,12 +42,7 @@ Supremo::Application.routes.draw do
     end
   end
 
-	resources :users do
-		member do
-			get :upload_image
-			put :save_uploaded_image
-		end
-	end
+
   resources :employees,:controller=>:users
   resources :engineers,:controller=>:users
 

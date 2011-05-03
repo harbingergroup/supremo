@@ -22,8 +22,10 @@ class ApplicationController < ActionController::Base
   end
   
   def require_user
-  	if current_user.nil? 
-  		redirect_to :back
+ 
+  	if current_user.nil?
+     	flash[:alert] = "You are not authorised to view this page."
+  		redirect_to login_url
   		return false  		
   	else
   		return true
@@ -62,5 +64,14 @@ class ApplicationController < ActionController::Base
   		redirect_to :back
   		return false
   	end
-  end 
+  end
+
+      def store_location
+      session[:return_to] = request.request_uri
+    end
+
+    def redirect_back_or_default(default)
+      redirect_to(session[:return_to] || default)
+      session[:return_to] = nil
+    end
 end

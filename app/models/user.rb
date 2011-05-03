@@ -33,4 +33,12 @@ def is_admin?
 	end
 
 end
+
+def verify_password?(password)
+    encryptor_class = Devise::Encryptors.const_get(Devise.encryptor.to_s.classify)
+    encryptor_digest = encryptor_class.digest(password, Devise.stretches, self.password_salt, Devise.pepper)
+    encryptor_digest == self.encrypted_password
+  end
+
+
 end
