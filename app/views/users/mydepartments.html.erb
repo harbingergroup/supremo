@@ -1,0 +1,23 @@
+<%@departments.each do |dept|%>
+	<h3 class="section_header"><%=link_to dept.name, department_url(dept.id), :class=>"dept_link" %>&nbsp;: Total tickets:<%= dept.tickets.count%></h3>
+	<br/>
+	<div class="dept_tickets">
+	
+	<b>Open tickets:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+	<%=dept.tickets.new_tickets.count%>
+	<br/>
+	
+	<b>Assigned tickets:&nbsp;&nbsp;</b>
+	<%=dept.tickets.assigned_tickets.count%>
+	<br/>
+	
+	<b>Resolved tickets:&nbsp;&nbsp;</b>
+	<%=dept.tickets.resolved_tickets.count%>
+	<br/>
+	
+	<b>Closed tickets:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> 
+	<%=dept.tickets.closed_tickets.count%>
+	<br/>
+	</div>
+	
+<%end%>
