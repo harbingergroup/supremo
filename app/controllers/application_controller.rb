@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   
   def authorised_user_to_view_ticket
   	ticket = Ticket.find(params[:id])
-  	if ticket.original_assigned_to == current_user.id or ticket.owner_id == current_user.id or ticket.department.head_id == current_user.id
+  	if ticket.assigned_to == current_user.id or ticket.original_assigned_to == current_user.id or ticket.owner_id == current_user.id or ticket.department.head_id == current_user.id
   		return true
   	else 
   		#redirect_back_or_default user_url(current_user)
@@ -73,5 +73,26 @@ class ApplicationController < ActionController::Base
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
+    end
+    
+    def require_ticket_status_open
+    	ticket = Ticket.find(params[:id])
+    	respond_to do |format|
+    	if ticket.closed?
+    		logger.debug 'here==========================='
+    		
+    		format.html {  		flash[:alert] = "Ticket has been closed."
+    				    		redirect_to :back
+    				    		return false
+    				   }
+    		format.js {
+    			render :text=>'set_alert("ticket has been closed"); $("#ticket_comment_form").dialog("destroy");',:layout=>false
+    			return false
+    		}
+    		
+    	else
+    		return true    	
+    	end
+    	end
     end
 end

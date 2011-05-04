@@ -4,11 +4,12 @@
 <div class="user_img">
 	<%= image_tag get_user_image(@user,:small)%>
 	<div class="center_text">
+		<% if current_user == User.find(params[:id]) %>
 		<% if @user.image %>
 		<%= link_to 'Change Picture', "#", :id=>"upload_image_link" %>
 		<% else %>
 		<%= link_to 'Upload Picture', "#", :id=>"upload_image_link" %>
-
+		<%end%>
 		<% end %>
 	</div>
 </div>
@@ -17,6 +18,8 @@
 	<b>Department:</b><%= link_to @user.department.name, department_url(@user.department_id) %>
 </p>
 <!-- ************ For my depatment logic *********** -->
+
+<% if current_user == User.find(params[:id]) %>
 <%= render "dept_and_tickets" %>
 
 <div id="upload_profile_pic" class="hide">
@@ -36,3 +39,4 @@
 </div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+<%end%>
