@@ -74,4 +74,25 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
+    
+    def require_ticket_status_open
+    	ticket = Ticket.find(params[:id])
+    	respond_to do |format|
+    	if ticket.closed?
+    		logger.debug 'here==========================='
+    		
+    		format.html {  		flash[:alert] = "Ticket has been closed."
+    				    		redirect_to :back
+    				    		return false
+    				   }
+    		format.js {
+    			render :text=>'set_alert("ticket has been closed"); $("#ticket_comment_form").dialog("destroy");',:layout=>false
+    			return false
+    		}
+    		
+    	else
+    		return true    	
+    	end
+    	end
+    end
 end

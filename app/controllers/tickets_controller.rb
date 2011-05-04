@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
 	# GET /tickets.xml
 	before_filter :authorised_user_to_edit_ticket, :only => [:edit, :destroy]
 	before_filter :authorised_user_to_view_ticket, :only => [:show]
+	before_filter :require_ticket_status_open, :only => [:resolve, :reassign]
 	#before_filter :required_admin, :only => [:index]
 	def index
 		if current_user.is_admin?
@@ -197,7 +198,7 @@ class TicketsController < ApplicationController
     @ticket.close_ticket
 		if @ticket.save && @comment.save
       if @ticket.original_assigned_to
-        receiver = Uaser.find(@ticket.original_assigned_to)
+        receiver = User.find(@ticket.original_assigned_to)
 			  UserMailer.ticket_closed(current_user,@ticket.owner,@ticket).deliver
         UserMailer.ticket_closed(current_user,receiver,@ticket).deliver
       end
