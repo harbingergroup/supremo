@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   
   def authorised_user_to_view_ticket
   	ticket = Ticket.find(params[:id])
-  	if ticket.original_assigned_to == current_user.id or ticket.owner_id == current_user.id or ticket.department.head_id == current_user.id
+  	if ticket.assigned_to == current_user.id or ticket.original_assigned_to == current_user.id or ticket.owner_id == current_user.id or ticket.department.head_id == current_user.id
   		return true
   	else 
   		#redirect_back_or_default user_url(current_user)
