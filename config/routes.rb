@@ -46,8 +46,8 @@ Supremo::Application.routes.draw do
   resources :employees,:controller=>:users
   resources :engineers,:controller=>:users
 
-  match 'tickets/:ticket_id/assign(/:user_id)',:to=>'tickets#assign',:as=>'assign_ticket'
-  match 'tickets/:ticket_id/reassign(/:user_id)',:to=>'tickets#reassign',:as=>'reassign_ticket'
+  match 'tickets/:id/assign(/:user_id)',:to=>'tickets#assign',:as=>'assign_ticket'
+  match 'tickets/:id/reassign(/:user_id)',:to=>'tickets#reassign',:as=>'reassign_ticket'
   match 'user/tickets/:status',:to=>'users#ticket_status',:as=>'mytickets'
   #match 'tickets/closed/:department_id',:to=>'tickets#closed',:as=>'closed_ticket'
   #match 'tickets/assigned/:department_id',:to=>'tickets#assigned',:as=>'assigned_ticket'

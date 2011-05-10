@@ -104,7 +104,7 @@ class TicketsController < ApplicationController
 
 	def assign
 		#   raise 'here '
-		@ticket = Ticket.find(params[:ticket_id])
+		@ticket = Ticket.find(params[:id])
     user = User.find(params[:user_id])
 		@ticket.audit_comment = " #{current_user.full_name} assigned ticket to #{user.full_name}"
     @ticket.assign_to_engineer(params[:user_id])
@@ -136,7 +136,7 @@ class TicketsController < ApplicationController
 
 	def reassign
 		#  raise 'here'
-		@ticket = Ticket.find(params[:ticket_id])
+		@ticket = Ticket.find(params[:id])
 		t_log = "#{current_user.firstname} reassigned Ticket - # #{@ticket.id} "
 		c_log = "#{current_user.firstname} added comment on # #{@ticket.id} "
 		add_comment(@ticket,params[:comment],t_log,c_log)
@@ -150,7 +150,7 @@ class TicketsController < ApplicationController
 					redirect_to(:back)
 				}
 				format.js {
-					@comments = @ticket.comments.all
+					@comment = @ticket.comments.last
 				}
 			end
 		else

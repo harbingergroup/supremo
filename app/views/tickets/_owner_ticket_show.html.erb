@@ -4,7 +4,7 @@
 <% if @ticket.is_resolved? %>
    | <%= link_to 'Reopen Ticket',reopen_ticket_url(@ticket), :class => "ticket_action" %>
 <% elsif @ticket.assigned_to == current_user.id %>
-  | <%= link_to 'Reassign',reassign_ticket_url(@ticket,@ticket.original_assigned_to), :class => "ticket_action"%>
+  | <%= link_to 'Reassign To Engineer',reassign_ticket_url(@ticket,@ticket.original_assigned_to), :class => "ticket_action"%>
 <% end %>
   <% end %>
 <br/>

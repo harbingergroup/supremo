@@ -46,7 +46,7 @@
 <% if @ticket.owner_id == @user_id %>
   <%= render :partial=>'tickets/owner_ticket_show' %>
 <% end %>
-<% if @ticket.assigned_to == @user_id%>
+<% if @ticket.assigned_to == @user_id && !(@ticket.assigned_to == @ticket.owner_id) %>
   <%= render :partial=>'tickets/engg_ticket_show' %>
 <% end %>
 
