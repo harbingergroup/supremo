@@ -3,15 +3,16 @@
 
 
 $(document).ready(function(){
-    $( "#ticket_comment_form" ).dialog({
+
+    $('.ticket_action').live("click",function() {
+
+        $( "#ticket_comment_form" ).dialog({
         autoOpen: false,
         title: "Comment",
-        height: 370,
-        width: 430,
+        width: 450,
         modal: true
 
     });
-    $('.ticket_action').live("click",function() {
         $(".tc_form").attr('action',$(this).attr('href'));
         $( "#ticket_comment_form" ).dialog('open');
         return false;
@@ -168,7 +169,7 @@ $.fx.speeds._default = 1100;
 			show: "slide",
 			modal: true,
 			title: "Upload Profile Picture",
-			hide: "clip",
+			hide: "clip"
 			//width: 428,
 			//height: 375
 			
@@ -179,3 +180,44 @@ $.fx.speeds._default = 1100;
 			return false;
 		});
 });
+
+  $(document).ready(function() {
+   
+    $(".tc_form")
+      .bind('ajax:before', show_throbber)
+      //.bind('ajax:success', function(data, status, xhr) {alert("success!");})
+     // .bind('ajax:failure', function(xhr, status, error) {alert("failure!");})
+      .bind('ajax:complete', hide_throbber);
+  });
+
+
+function show_throbber() {
+  $(".tcSubmit").hide();
+  $(".aThrobber").show();
+}
+
+function hide_throbber() {
+    $(".aThrobber").hide();
+    $(".tcSubmit").show();
+}
+
+/*
+$(document).ready(function() {
+
+$('.ulName').click(function()
+{
+$(this).qtip({
+   content: {
+      text: 'Loading...', // The text to use whilst the AJAX request is loading
+      ajax: {
+         url: $(this).attr("href")+'.js', // URL to the local file
+         type: 'GET', // POST or GET
+         data: {} // Data to pass along with your request
+      }
+   }
+});
+
+return false;
+})
+
+})*/

@@ -1,3 +1,4 @@
+<center>
 <%= form_tag(reopen_ticket_path(@ticket), :remote => true, :class => "tc_form") do  %>
  <div id="comment_errors" style="display: none;"></div>
 
@@ -5,6 +6,8 @@
     <%= text_area "",:comment, :rows => '5', :cols => '30' %>
   </div>
   <div class="actions">
-    <%= submit_tag "Submit" , :id => "submit_comment"%>
+    <span class="tcSubmit"><%= submit_tag "Submit" , :id => "submit_comment"%></span>
+    <span class="aThrobber hide"><%= image_tag "ajax-loader.gif" %></span>
   </div>
 <% end %>
+</center>
