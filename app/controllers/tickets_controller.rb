@@ -29,7 +29,9 @@ class TicketsController < ApplicationController
 		@ticket = Ticket.find(params[:id])
 		@comments = @ticket.comments.all
 
-		@audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=?",['Ticket','Comment'], @ticket.id, @ticket.id])
+  
+		@audits = Audit.unscoped.where("comment is not NULL and auditable_type IN(?) and ((auditable_id=? and auditable_type=?) or (auditable_type=? and association_id=?))",['Ticket','Comment'], @ticket.id,'Ticket','Comment', @ticket.id).order("created_at ASC")
+    #@audits = Audit.find(:all, :conditions => ["auditable_type IN(?) and auditable_id=? or association_id=?",['Ticket','Comment'], @ticket.id, @ticket.id])
 		#@department_users = @ticket.department.users
 		@department_users = User.where("department_id = #{@ticket.department.id} and type='Engineer'")
 		respond_to do |format|
@@ -178,7 +180,7 @@ class TicketsController < ApplicationController
 					@comments = @ticket.comments.all
 					flash[:notice] = 'Ticket resolved'
 					redirect_to(:back) }
-				format.js{@comments = @ticket.comments.all}
+				format.js{@comment = @ticket.comments.last}
 			end
 		else
 			respond_to do |format|
@@ -207,7 +209,7 @@ class TicketsController < ApplicationController
 					flash[:notice] = 'Ticket closed'
 					@comments = @ticket.comments.all
 					redirect_to(:back) }
-				format.js{@comments = @ticket.comments.all}
+				format.js{@comment = @ticket.comments.last}
 			end
 		else
 			respond_to do |format|

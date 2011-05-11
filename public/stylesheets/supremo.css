@@ -12,6 +12,10 @@ html body {
 input[type="text"], input[type="password"],input[type="email"], input.text, input.title, textarea, select {
     padding: 5px;
 }
+
+textarea {
+    resize:none;
+}
 input[type="file"]
 {
 	-moz-border-radius: 10px
