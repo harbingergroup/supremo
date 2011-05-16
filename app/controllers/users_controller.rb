@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 				end
 			}
 			format.xml  { render :xml => @user }
+      format.js {}
 		end
 	end
 
@@ -59,11 +60,14 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 		#@user.type = params[:user]['type'] ? params[:user]['type'] : 'Employee'
 		@user.type = 'Employee'
-		@image = Image.new(params[:user][:image_attributes])
-		@user.image = @image
+    if params[:user][:image_attributes]
+      @image = Image.new(params[:user][:image_attributes])
+      @user.image = @image
+    end
 
 		respond_to do |format|
 			if @user.save
+        sign_in @user, :bypass => true
 				UserMailer.registration_confirmation(@user).deliver
 				format.html {
 					if current_user && current_user.is_admin?
@@ -85,17 +89,8 @@ class UsersController < ApplicationController
 	# PUT /users/1.xml
 	def update
 		@user = User.find(params[:id])
-		logger.debug "==================================>>>>>>>>>>>>>>>> Image : #{@user.type}"
-
-		#params[:user][:image_attributes]
-		types = ['Admin','Engineer','Employee']
-		if @user.type != nil
-			@image = Image.new(params[@user.type.to_s.downcase][:image_attributes])
-		end
-
-		@user.image = @image
 		respond_to do |format|
-			if @user.update_attributes(params[:user])
+			if @user.update_attributes(params[@user.type.to_s.downcase])
 				format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
 				format.xml  { head :ok }
 			else
