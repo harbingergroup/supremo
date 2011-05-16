@@ -75,9 +75,9 @@
   <h5 class="table_title"> Log Trail:</h5>
   <br/>
 <table>
-  <% @audits.each do |a| %>
+  <% @audits.each_with_index do |a,i| %>
     <tr>
-      <td><%= a.comment %></td>
+      <td><b><%= (i+1).to_s+') ' %> </b> <%= a.comment %> On <%= a.created_at.strftime("%d %B %Y at %H:%M") %></td>
     </tr>
   <%end%>
 </table>

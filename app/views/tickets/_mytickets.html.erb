@@ -21,7 +21,7 @@
 	<tbody
 	<% tickets.each do |ticket| %>
 		<tr>
-			<td><%= link_to ticket.title,ticket_path(ticket) %></td>
+			<td><%= link_to truncate(ticket.title,:length=>20,:omission=>'...'),ticket_path(ticket) %></td>
 			<td><%= truncate(ticket.description,:length=>20,:omission=>'...') %></td>
 			<td><%= ticket.owner.firstname %></td>
 			<td><%= ticket.department.name %></td>
