@@ -27,7 +27,6 @@
 	<br />
 	<%= f.text_field :email %>
 </div>
-
 <% if @user.new_record? %>
 <div class="field">
 	<%= f.label :password %>
@@ -45,6 +44,7 @@
 	<br />
 	<%= f.collection_select :department_id,@depts,:id,:name_with_head %>
 </div>
+<% if @user.new_record? %>
 <div class="field">
 	<%= f.fields_for(:image) do |b| %>
 	<%= b.label :photo , "Profile picture"%>
@@ -52,7 +52,8 @@
 	<%= b.file_field :photo %>
 	<%end%>
 </div>
-<div class="actions">	
+<%end%>
+<div class="actions">
 	<%= f.submit %>
 </div>
 <% end %>
