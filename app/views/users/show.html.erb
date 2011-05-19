@@ -1,5 +1,6 @@
-<br/>
 
+
+<div style="overflow: hidden;">
 <!-- For user image -->
 <div class="user_img">
 	<%= image_tag get_user_image(@user,:small)%>
@@ -13,10 +14,15 @@
 		<% end %>
 	</div>
 </div>
+<div>
+<br/>
 <h3 class="profile_title"><%= @user.full_name %></h3>
 <p>
-	<b>Department:</b><%= link_to @user.department.name, department_url(@user.department_id) %>
+	<b>Department: </b><%= @user.department.name %>
 </p>
+</div>
+
+</div>
 <!-- ************ For my depatment logic *********** -->
 
 <% if current_user == User.find(params[:id]) %>
