@@ -5,11 +5,11 @@ gem 'rails', '3.0.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "paperclip"
+gem "paperclip",'2.3.8'
 gem 'mysql'
 gem 'devise', '1.3.1'
 gem 'acts_as_audited', '2.0.0.rc7'
-
+#gem 'awesome_print'
 
 # Use unicorn as the web server
 # gem 'unicorn'
